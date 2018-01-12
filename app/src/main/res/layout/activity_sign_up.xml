@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context="com.example.atul_.eatit.SignUp">
+
+
+    <info.hoang8f.widget.FButton
+        android:id="@+id/btnSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:text="SignUp"
+        android:textColor="@android:color/black"
+        app:buttonColor="@color/btnSignActive"
+        app:cornerRadius="4dp"
+        app:shadowColor="@android:color/black"
+        app:shadowEnabled="true"
+        app:shadowHeight="5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="20dp"/>
+
+
+
+
+    <com.rengwuxian.materialedittext.MaterialAutoCompleteTextView
+        android:id="@+id/edtphone1"
+        android:hint="Phone Number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="@android:color/black"
+        android:text="101"
+        android:textColor="@android:color/black"
+        android:textSize="34dp"
+        android:inputType="phone"
+        app:met_maxCharacters="11"
+        app:met_primaryColor="@android:color/black"
+        android:layout_marginBottom="26dp"
+        android:layout_above="@+id/edtname"
+        android:layout_alignParentStart="true"/>
+
+
+
+        <com.rengwuxian.materialedittext.MaterialAutoCompleteTextView
+            android:id="@+id/edtname"
+            android:hint="Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@android:color/black"
+            android:text="Hetvi"
+            android:textColor="@android:color/black"
+            android:textSize="34dp"
+            android:inputType="phone"
+            app:met_maxCharacters="11"
+            app:met_primaryColor="@android:color/black"
+            android:layout_marginBottom="86dp"
+            android:layout_above="@+id/edtpassword1"
+            android:layout_alignParentStart="true"/>
+
+    <com.rengwuxian.materialedittext.MaterialAutoCompleteTextView
+            android:id="@+id/edtpassword1"
+            android:hint="Password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@android:color/black"
+            android:text="123"
+            android:textColor="@android:color/black"
+            android:textSize="34dp"
+            android:inputType="textPassword"
+            app:met_maxCharacters="11"
+            app:met_primaryColor="@android:color/black"
+            android:layout_marginBottom="128dp"
+            android:layout_above="@+id/btnSignUp"
+            android:layout_alignParentStart="true"/>
+
+
+
+
+
+</RelativeLayout>
