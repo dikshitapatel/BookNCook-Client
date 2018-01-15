@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg"
     tools:context="com.example.atul_.eatit.SignIn">
-    
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_marginRight="8dp"

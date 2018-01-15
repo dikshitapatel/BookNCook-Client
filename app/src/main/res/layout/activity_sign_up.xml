@@ -30,7 +30,7 @@
 
 
     <com.rengwuxian.materialedittext.MaterialAutoCompleteTextView
-        android:id="@+id/edtphone1"
+        android:id="@+id/edtphone"
         android:hint="Phone Number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -56,15 +56,15 @@
             android:text="Hetvi"
             android:textColor="@android:color/black"
             android:textSize="34dp"
-            android:inputType="phone"
+            android:inputType="text"
             app:met_maxCharacters="11"
             app:met_primaryColor="@android:color/black"
             android:layout_marginBottom="86dp"
-            android:layout_above="@+id/edtpassword1"
+            android:layout_above="@+id/edtpassword"
             android:layout_alignParentStart="true"/>
 
     <com.rengwuxian.materialedittext.MaterialAutoCompleteTextView
-            android:id="@+id/edtpassword1"
+            android:id="@+id/edtpassword"
             android:hint="Password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

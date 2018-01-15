@@ -16,8 +16,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class SignIn extends AppCompatActivity {
-    EditText edtPhone, edtPassword;
+    EditText edtPhone,edtPassword;
     Button btnSignIn;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,8 @@ public class SignIn extends AppCompatActivity {
         edtPhone = (EditText) findViewById(R.id.edtphone);
         btnSignIn = (Button) findViewById(R.id.btnSignIn);
 
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference table_user = database.getReference("User");
@@ -38,6 +41,7 @@ public class SignIn extends AppCompatActivity {
             public void onClick(View view) {
 
                 final ProgressDialog mDialog=new ProgressDialog(SignIn.this);
+                mDialog.setMessage("Please wait");
                 mDialog.show();
                 table_user.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -47,6 +51,7 @@ public class SignIn extends AppCompatActivity {
                             User user = dataSnapshot.child(edtPhone.getText().toString()).getValue(User.class);
                             if (user.getPassword().equals(edtPassword.getText().toString()))
                             {
+                                mDialog.dismiss();
                                 Toast.makeText(SignIn.this, "Sign in successfully", Toast.LENGTH_SHORT).show();
                             }
                         else
@@ -56,7 +61,7 @@ public class SignIn extends AppCompatActivity {
                         }
                         else
                         {
-                            mDialog.dismiss();
+
                             Toast.makeText(SignIn.this,"User doesnot exist.",Toast.LENGTH_SHORT).show();
                         }
 
