@@ -1,5 +1,6 @@
 package com.example.atul_.eatit;
 
+import android.content.Intent;
 import android.icu.util.ULocale;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,17 +24,20 @@ import android.widget.Toast;
 import com.example.atul_.eatit.Common.Common;
 import com.example.atul_.eatit.Interface.ItemClickListener;
 import com.example.atul_.eatit.ViewHolder.MenuViewHolder;
+import com.example.atul_.eatit.model.Category;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
-public class Home extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     FirebaseDatabase database;
     DatabaseReference category;
     TextView txtFullName;
     RecyclerView recycler_menu;
     RecyclerView.LayoutManager layoutManager;
+
+    final FirebaseRecyclerAdapter<Category,MenuViewHolder> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,16 +77,19 @@ public class Home extends AppCompatActivity
         loadMenu();
     }
     private void loadMenu() {
-        FirebaseRecyclerAdapter<Category,MenuViewHolder> adapter=new FirebaseRecyclerAdapter<Category,MenuViewHolder>(){
-            protected void populateViewHolder(MenuViewHolder viewHolder,Category model, int position){
+        final FirebaseRecyclerAdapter<Category, MenuViewHolder> adapter = new FirebaseRecyclerAdapter<Category, MenuViewHolder>() {
+            protected void populateViewHolder(MenuViewHolder viewHolder, Category model, int position) {
                 viewHolder.txtMenuName.setText(model.getName());
                 Picasso.with(getBaseContext()).load(model.getImage())
                         .into(viewHolder.imageView);
-                final Category clickItem=model;
+                final Category clickItem = model;
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(Home.this,""+clickItem.getName(), Toast.LENGTH_SHORT).show();
+
+                        Intent foodList = new Intent(Home.this, FoodList.class);
+                        foodList.putExtra("CategoryId", adapter.getRef(position).getKey());
+                        startActivity(foodList);
                     }
                 });
             }
@@ -91,14 +98,14 @@ public class Home extends AppCompatActivity
             @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
             @Override
 
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
+            public void onBackPressed() {
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                if (drawer.isDrawerOpen(GravityCompat.START)) {
+                    drawer.closeDrawer(GravityCompat.START);
+                } else {
+                    super.onBackPressed();
+                }
+            }
 
             @Override
             public boolean onCreateOptionsMenu(Menu menu) {
