@@ -20,6 +20,7 @@ public class MenuViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     private ItemClickListener itemClickListener;
     private View view;
 
+
     public MenuViewHolder(View itemView) {
         super(itemView);
         txtMenuName = (TextView) itemView.findViewById(R.id.menu_name);
@@ -33,7 +34,7 @@ public class MenuViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View view) {
 
         itemClickListener.onClick(view, getAdapterPosition(), false);
 
