@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -17,10 +18,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import io.paperdb.Paper;
+
 public class SignIn extends AppCompatActivity {
     EditText edtPhone,edtPassword;
     Button btnSignIn;
     ProgressDialog progressDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,8 @@ public class SignIn extends AppCompatActivity {
         edtPassword = (EditText) findViewById(R.id.edtpassword);
         edtPhone = (EditText) findViewById(R.id.edtphone);
         btnSignIn = (Button) findViewById(R.id.btnSignIn);
+
+
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
@@ -58,6 +64,7 @@ public class SignIn extends AppCompatActivity {
                                 startActivity(homeIntent);
                                 finish();
                             }
+
                         else
                             {
                                 Toast.makeText(SignIn.this, "Sign in failed", Toast.LENGTH_SHORT).show();
@@ -66,10 +73,12 @@ public class SignIn extends AppCompatActivity {
                         else
                         {
 
-                            Toast.makeText(SignIn.this,"User doesnot exist.",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignIn.this,"User does not exist.",Toast.LENGTH_SHORT).show();
                         }
 
                     }
+
+
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {

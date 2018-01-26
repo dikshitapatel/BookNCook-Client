@@ -48,7 +48,7 @@ public class SignUp extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if (dataSnapshot.child(edtPhone.getText().toString()).exists()) {
                             mDialog.dismiss();
-                            Toast.makeText(SignUp.this, "Phone no exists", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUp.this, "User already exists", Toast.LENGTH_SHORT).show();
 
                         }
                         else
@@ -56,7 +56,7 @@ public class SignUp extends AppCompatActivity {
                             mDialog.dismiss();
                             User user=new User(edtName.getText().toString(),edtPassword.getText().toString());
                             table_user.child(edtPhone.getText().toString()).setValue(user);
-                            Toast.makeText(SignUp.this, "Sign up  successfully done", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUp.this, "Sign up successfull", Toast.LENGTH_SHORT).show();
                             finish();
                         }
                     }

@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BooknCook22_13jan.iml" filepath="$PROJECT_DIR$/BooknCook22_13jan.iml" />
-      <module fileurl="file://$PROJECT_DIR$/EatIt2.iml" filepath="$PROJECT_DIR$/EatIt2.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/bookncook_menu.iml" filepath="$PROJECT_DIR$/bookncook_menu.iml" />
       <module fileurl="file://$PROJECT_DIR$/bookncook_menu17.iml" filepath="$PROJECT_DIR$/bookncook_menu17.iml" />
     </modules>
   </component>

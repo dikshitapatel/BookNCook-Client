@@ -16,6 +16,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -115,7 +116,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
             public boolean onCreateOptionsMenu(Menu menu) {
                 // Inflate the menu; this adds items to the action bar if it is present.
-                getMenuInflater().inflate(R.menu.home, menu);
+                MenuInflater inflater=getMenuInflater();
+                inflater.inflate(R.menu.activity_home_drawer, menu);
                 return true;
             }
 
