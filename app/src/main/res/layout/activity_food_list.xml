@@ -6,11 +6,12 @@
     tools:context="com.example.atul_.eatit.FoodList">
 
     <android.support.v7.widget.RecyclerView
-        android:layout_height="551dp"
-        android:layout_width="368dp"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
         android:id="@+id/recycler_food"
         android:scrollbars="vertical"
         tools:layout_editor_absoluteY="8dp"
-        tools:layout_editor_absoluteX="8dp" />
+        tools:layout_editor_absoluteX="8dp"
+        />
 
 </android.support.constraint.ConstraintLayout>

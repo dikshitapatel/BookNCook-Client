@@ -18,7 +18,7 @@ import com.squareup.picasso.Picasso;
 
 public class FoodDetail extends AppCompatActivity {
 
-    TextView food_name,food_price,food_desciption;
+    TextView food_name,food_price,food_description;
     ImageView food_image;
     CollapsingToolbarLayout collapsingToolbarLayout;
     FloatingActionButton btnCart;
@@ -36,18 +36,18 @@ public class FoodDetail extends AppCompatActivity {
 
 
         database = FirebaseDatabase.getInstance();
-        foods = database.getReference("Foods");
+        foods = database.getReference("Food");
 
-        numberButton = (ElegantNumberButton) findViewById(R.id.number_button);
-        btnCart = (FloatingActionButton) findViewById(R.id.btnCart);
+        numberButton = (ElegantNumberButton)findViewById(R.id.number_button);
+        btnCart = (FloatingActionButton)findViewById(R.id.btnCart);
 
-        food_desciption = (TextView) findViewById(R.id.food_description);
-        food_price = (TextView) findViewById(R.id.food_price);
-        food_name = (TextView) findViewById(R.id.food_name);
-        food_image = (ImageView) findViewById(R.id.img_food);
+        food_description = (TextView)findViewById(R.id.food_description);
+        food_price = (TextView)findViewById(R.id.food_price);
+        food_name = (TextView)findViewById(R.id.food_name);
+        food_image = (ImageView)findViewById(R.id.img_food);
 
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing);
-       // collapsingToolbarLayout = setExpandedTitleAppearance(R.style.ExpandedAppbar);
+      // collapsingToolbarLayout = setExpandedTitleAppearance(R.style.ExpandedAppbar);
         //collapsingToolbarLayout = setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
 
         if (getIntent() != null)
@@ -64,10 +64,12 @@ public class FoodDetail extends AppCompatActivity {
                    Food food=dataSnapshot.getValue(Food.class);
 
 
-                   Picasso.with(getBaseContext()).load(food.getName());
+                   Picasso.with(getBaseContext()).load(food.getImage())
+                   .into(food_image);
+                   collapsingToolbarLayout.setTitle(food.getName());
                    food_price.setText(food.getPrice());
                    food_name.setText(food.getName());
-                   food_desciption.setText(food.getDescripton());
+                   food_description.setText(food.getDescripton());
 
                }
 
@@ -77,4 +79,6 @@ public class FoodDetail extends AppCompatActivity {
                }
            });
     }
+
+
 }

@@ -5,7 +5,7 @@ package com.example.atul_.eatit.model;
  */
 
 public class Food {
-    private String Name,Image,Descripton,Price,Discount,MenuId;
+    private String Name,Image, Description,Price,Discount,MenuId;
 
     public Food(){
 
@@ -15,7 +15,7 @@ public class Food {
     public Food(String name,String image,String descripton,String price,String discount,String menuId) {
         Name = name;
         Image = image;
-        Descripton = descripton;
+        Description = descripton;
         Price = price;
         Discount = discount;
         MenuId = menuId;
@@ -38,11 +38,11 @@ public class Food {
     }
 
     public String getDescripton() {
-        return Descripton;
+        return Description;
     }
 
-    public void setDescripton(String descripton) {
-        Descripton = descripton;
+    public void setDescription(String descripton) {
+        Description = descripton;
     }
 
     public String getPrice() {

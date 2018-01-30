@@ -36,7 +36,7 @@ public class FoodList extends AppCompatActivity {
         setContentView(R.layout.activity_food_list);
 
         database=FirebaseDatabase.getInstance();
-        foodList=database.getReference("Foods");
+        foodList=database.getReference("Food");
 
         recyclerView=(RecyclerView)findViewById(R.id.recycler_food);
         recyclerView.setHasFixedSize(true);
@@ -60,16 +60,20 @@ public class FoodList extends AppCompatActivity {
               viewHolder.food_name.setText(model.getName());
               Picasso.with(getBaseContext()).load(model.getImage()).into(viewHolder.food_image);
 
-              final Food local =model;
+              final Food local = model;
               viewHolder.setItemClickListener(new ItemClickListener() {
                   @Override
                   public void onClick(View view, int position, boolean isLongClick) {
-                      Toast.makeText(FoodList.this, ""+local.getName(), Toast.LENGTH_SHORT).show();
+
+                    Intent foodDetail = new Intent(FoodList.this,FoodDetail.class);
+                     foodDetail.putExtra("FoodId",adapter.getRef(position).getKey());
+                      startActivity(foodDetail);
                   }
               });
 
           }
       };
+
 
 
       recyclerView.setAdapter(adapter);
