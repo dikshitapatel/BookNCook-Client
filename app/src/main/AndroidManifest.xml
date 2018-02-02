@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.atul_.eatit">
+          package="com.example.atul_.eatit">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -12,19 +12,21 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".SignIn" />
-        <activity android:name=".SignUp" />
+        <activity android:name=".SignIn"/>
+        <activity android:name=".SignUp"/>
         <activity
             android:name=".Home"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".FoodList" />
-        <activity android:name=".FoodDetail"></activity>
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".FoodList"/>
+        <activity android:name=".FoodDetail"/>
+        <activity android:name=".Cart">
+        </activity>
     </application>
 
 </manifest>
