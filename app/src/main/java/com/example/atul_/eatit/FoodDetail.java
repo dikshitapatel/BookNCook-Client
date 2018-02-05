@@ -69,8 +69,8 @@ public class FoodDetail extends AppCompatActivity {
         food_image = (ImageView)findViewById(R.id.img_food);
 
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing);
-      // collapsingToolbarLayout = setExpandedTitleAppearance(R.style.ExpandedAppbar);
-        //collapsingToolbarLayout = setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
+     // collapsingToolbarLayout = setExpandedTitleAppearance(R.style.ExpandedAppbar);
+      //  collapsingToolbarLayout = setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
 
         if (getIntent() != null)
             foodId = getIntent().getStringExtra("FoodId");
@@ -91,7 +91,7 @@ public class FoodDetail extends AppCompatActivity {
                    collapsingToolbarLayout.setTitle(currentFood.getName());
                    food_price.setText(currentFood.getPrice());
                    food_name.setText(currentFood.getName());
-                   food_description.setText(currentFood.getDescripton());
+                   food_description.setText(currentFood.getDescription());
 
                }
 
@@ -101,6 +101,7 @@ public class FoodDetail extends AppCompatActivity {
                }
            });
     }
+
 
 
 }

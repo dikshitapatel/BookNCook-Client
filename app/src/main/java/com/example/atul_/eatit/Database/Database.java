@@ -50,7 +50,7 @@ public class Database extends SQLiteAssetHelper
     }
     public void addToCart(Order order)
     {
-        SQLiteDatabase db = getReadableDatabase();
+         SQLiteDatabase db = getReadableDatabase();
         String query = String.format("INSERT INTO OrderDetail(ProductId,ProductName,Quantity,Price,Discount) VALUES('%s','%s','%s','%s','%s');",
             order.getProductId(),
                 order.getProductName(),

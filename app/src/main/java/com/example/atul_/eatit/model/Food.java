@@ -12,10 +12,10 @@ public class Food {
     }
 
 
-    public Food(String name,String image,String descripton,String price,String discount,String menuId) {
+    public Food(String name,String image,String description,String price,String discount,String menuId) {
         Name = name;
         Image = image;
-        Description = descripton;
+        Description = description;
         Price = price;
         Discount = discount;
         MenuId = menuId;
@@ -37,12 +37,12 @@ public class Food {
         Image = image;
     }
 
-    public String getDescripton() {
+    public String getDescription() {
         return Description;
     }
 
-    public void setDescription(String descripton) {
-        Description = descripton;
+    public void setDescription(String description) {
+        Description = description;
     }
 
     public String getPrice() {
