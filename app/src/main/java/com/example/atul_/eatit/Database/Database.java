@@ -72,7 +72,7 @@ public class Database extends SQLiteOpenHelper {
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
 
         String[] sqlSelect={"ProductId,ProductNAME,Quantity,Price,Discount"};
-        String sqlTable="OrderDetail";
+        String sqlTable="order";
 
         qb.setTables(sqlTable);
 
@@ -81,8 +81,8 @@ public class Database extends SQLiteOpenHelper {
         if(c.moveToFirst())
         {
             do{
-                result.add(new Order(c.getString(c.getColumnIndex("ProductId")),
-                c.getString(c.getColumnIndex("ProductName")),
+                result.add(new Order(c.getString(c.getColumnIndex("ProductID")),
+                c.getString(c.getColumnIndex("ProductNAME")),
                 c.getString(c.getColumnIndex("Quantity")),
                 c.getString(c.getColumnIndex("Price")),
                 c.getString(c.getColumnIndex("Discount"))
@@ -98,7 +98,7 @@ public class Database extends SQLiteOpenHelper {
 
     public void addToCart(Order order) {
         SQLiteDatabase db = getReadableDatabase();
-        String query = String.format("INSERT INTO OrderDetail(ProductID,ProductNAME,Quantity,Price,Discount) VALUES('%s','%s','%s','%s','%s');",
+        String query = String.format("INSERT INTO order(ProductID,ProductNAME,Quantity,Price,Discount) VALUES('%s','%s','%s','%s','%s');",
 
 
                 order.getProductId(),
@@ -112,7 +112,7 @@ public class Database extends SQLiteOpenHelper {
 
     public void cleanCart() {
         SQLiteDatabase db = getReadableDatabase();
-        String query = String.format("DELETE FROM OrderDetail");
+        String query = String.format("DELETE FROM order");
 
 
         db.execSQL(query);
