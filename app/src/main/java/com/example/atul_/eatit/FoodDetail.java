@@ -1,5 +1,6 @@
 package com.example.atul_.eatit;
 
+import android.content.Intent;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -28,11 +29,14 @@ public class FoodDetail extends AppCompatActivity {
     FloatingActionButton btnCart;
     ElegantNumberButton numberButton;
 
+    Database db;
+
     String foodId="";
 
     FirebaseDatabase database;
     DatabaseReference foods;
     Food currentFood;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,7 @@ public class FoodDetail extends AppCompatActivity {
         foods = database.getReference("Food");
 
         numberButton = (ElegantNumberButton)findViewById(R.id.number_button);
+
         btnCart = (FloatingActionButton)findViewById(R.id.btnCart);
         btnCart.setOnClickListener(new View.OnClickListener() {
                                        @Override
@@ -92,6 +97,7 @@ public class FoodDetail extends AppCompatActivity {
                    food_price.setText(currentFood.getPrice());
                    food_name.setText(currentFood.getName());
                    food_description.setText(currentFood.getDescription());
+                   Intent database = new Intent(FoodDetail.this,Database.class);
 
                }
 

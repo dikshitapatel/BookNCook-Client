@@ -29,6 +29,7 @@ public class Cart extends AppCompatActivity {
     TextView txtTotalPrice;
     FButton btnPlace;
 
+
     List<Order> cart = new ArrayList<>();
 
     CartAdapter adapter;
@@ -49,6 +50,7 @@ public class Cart extends AppCompatActivity {
         btnPlace = (FButton)findViewById(R.id.btnPlaceOrder);
         
         loadListFood();
+
         
     }
 

@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.atul_.eatit.Common.Common;
+import com.example.atul_.eatit.Database.Database;
 
 import io.paperdb.Paper;
 
@@ -17,10 +18,12 @@ public class MainActivity extends AppCompatActivity {
     Button btnSignIn ,btnSignUp;
     TextView txtSlogan;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         btnSignIn = (Button) findViewById(R.id.btnSignIn);
         btnSignUp = (Button) findViewById(R.id.btnSignUp);
 
