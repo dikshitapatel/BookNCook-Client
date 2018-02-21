@@ -26,9 +26,9 @@ public class Database extends SQLiteOpenHelper {
 
 
     public static final int DATABASE_VERSION = 1;
-    public static final String DATABASE_NAME = "OrderDetail";
+    public static final String DATABASE_NAME = "OrderDetail.db";
 
-    public static final String TABLE_NAME = "order";
+    public static final String TABLE_NAME = "order1";
     public static final String ProductID = "pro_id";
     public static final String ProductNAME = "name";
     public static final String Price = "price";
@@ -36,9 +36,9 @@ public class Database extends SQLiteOpenHelper {
     public static final String Discount = "discount";
     //Create Table Query
     private static final String SQL_CREATE_ORDERS =
-            "CREATE TABLE order (" + ProductID + "  INTEGER PRIMARY KEY, "
-                    + ProductNAME + " TEXT, " + Price + "  INTEGER, "
-                    + Quantity + "  INTEGER, " + Discount + "  INTEGER );";
+            "CREATE TABLE " +TABLE_NAME +" (" + ProductID + "  INTEGER PRIMARY KEY, "
+                    + ProductNAME + " TEXT, " + Quantity + "  INTEGER, "
+                    + Price + "  INTEGER, " + Discount + "  INTEGER );";
 
     private static final String SQL_DELETE_ORDERS =
             "DROP TABLE IF EXISTS " + TABLE_NAME;
@@ -71,8 +71,8 @@ public class Database extends SQLiteOpenHelper {
             SQLiteDatabase db = getReadableDatabase();
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
 
-        String[] sqlSelect={"ProductId,ProductNAME,Quantity,Price,Discount"};
-        String sqlTable="order";
+        String[] sqlSelect={"ProductID,ProductNAME,Quantity,Price,Discount"};
+        String sqlTable=TABLE_NAME;
 
         qb.setTables(sqlTable);
 
@@ -96,23 +96,23 @@ public class Database extends SQLiteOpenHelper {
 
 
 
-    public void addToCart(Order order) {
+    public void addToCart(Order order1) {
         SQLiteDatabase db = getReadableDatabase();
-        String query = String.format("INSERT INTO order(ProductID,ProductNAME,Quantity,Price,Discount) VALUES('%s','%s','%s','%s','%s');",
+        String query = String.format("INSERT INTO " +TABLE_NAME+ "(ProductID,ProductNAME,Quantity,Price,Discount) VALUES('%s','%s','%s','%s','%s');",
 
 
-                order.getProductId(),
-                order.getProductName(),
-                order.getQuantity(),
-                order.getPrice(),
-                order.getDiscount());
+                order1.getProductID(),
+                order1.getProductNAME(),
+                order1.getQuantity(),
+                order1.getPrice(),
+                order1.getDiscount());
         db.execSQL(query);
 
     }
 
     public void cleanCart() {
         SQLiteDatabase db = getReadableDatabase();
-        String query = String.format("DELETE FROM order");
+        String query = String.format("DELETE FROM " + TABLE_NAME + ";");
 
 
         db.execSQL(query);

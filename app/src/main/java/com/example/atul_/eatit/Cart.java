@@ -60,8 +60,8 @@ public class Cart extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         int total = 0;
-        for(Order order:cart)
-            total+=(Integer.parseInt(order.getPrice()))*(Integer.parseInt(order.getQuantity()));
+        for(Order order1:cart)
+            total+=(Integer.parseInt(order1.getPrice()))*(Integer.parseInt(order1.getQuantity()));
         Locale locale = new Locale("en","INDIA");
         NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
 

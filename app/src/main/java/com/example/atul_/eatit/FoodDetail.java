@@ -29,7 +29,7 @@ public class FoodDetail extends AppCompatActivity {
     FloatingActionButton btnCart;
     ElegantNumberButton numberButton;
 
-    Database db;
+
 
     String foodId="";
 
@@ -62,7 +62,9 @@ public class FoodDetail extends AppCompatActivity {
 
 
                                            ));
-                                           Toast.makeText(FoodDetail.this,"Added to Cart",Toast.LENGTH_SHORT).show();
+                                           Intent database = new Intent(FoodDetail.this,Database.class);
+                                           startActivity(database);
+
                                        }
 
                                    });
@@ -97,7 +99,6 @@ public class FoodDetail extends AppCompatActivity {
                    food_price.setText(currentFood.getPrice());
                    food_name.setText(currentFood.getName());
                    food_description.setText(currentFood.getDescription());
-                   Intent database = new Intent(FoodDetail.this,Database.class);
 
                }
 
