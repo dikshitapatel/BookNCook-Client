@@ -15,6 +15,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.R.attr.name;
+
 /**
  * Created by atul_ on 31/01/2018.
  */
@@ -36,9 +38,7 @@ public class Database extends SQLiteOpenHelper {
     public static final String Discount = "discount";
     //Create Table Query
     private static final String SQL_CREATE_ORDERS =
-            "CREATE TABLE " +TABLE_NAME +" (" + ProductID + "  INTEGER PRIMARY KEY, "
-                    + ProductNAME + " TEXT, " + Quantity + "  INTEGER, "
-                    + Price + "  INTEGER, " + Discount + "  INTEGER );";
+            "CREATE TABLE "+TABLE_NAME +"("+ProductID+" INTEGER PRIMARY KEY,"+ProductNAME+"TEXT,"+Quantity+" INTEGER,"+Price+" INTEGER,"+Discount+" INTEGER);";
 
     private static final String SQL_DELETE_ORDERS =
             "DROP TABLE IF EXISTS " + TABLE_NAME;
@@ -98,7 +98,7 @@ public class Database extends SQLiteOpenHelper {
 
     public void addToCart(Order order1) {
         SQLiteDatabase db = getReadableDatabase();
-        String query = String.format("INSERT INTO " +TABLE_NAME+ "(ProductID,ProductNAME,Quantity,Price,Discount) VALUES('%s','%s','%s','%s','%s');",
+        String query = String.format("INSERT INTO " +TABLE_NAME+ "(pro_id,name,quantity,price,discount) VALUES('%s','%s','%s','%s','%s');",
 
 
                 order1.getProductID(),
