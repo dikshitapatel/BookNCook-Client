@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteQueryBuilder;
 
 import com.example.atul_.eatit.model.Order;
 import com.google.firebase.database.ValueEventListener;
+import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 
 import java.util.ArrayList;
@@ -24,24 +25,19 @@ import static android.R.attr.name;
 
 
 
-public class Database extends SQLiteOpenHelper {
+public class Database extends SQLiteAssetHelper {
 
 
     public static final int DATABASE_VERSION = 1;
-    public static final String DATABASE_NAME = "OrderDetail.db";
+    public static final String DATABASE_NAME = "EatIt.db";
 
-    public static final String TABLE_NAME = "order1";
-    public static final String ProductID = "pro_id";
-    public static final String ProductNAME = "name";
-    public static final String Price = "price";
-    public static final String Quantity = "quantity";
-    public static final String Discount = "discount";
+    public static final String TABLE_NAME = "OrderDetail";
+    public static final String ProductID = "ProductId";
+    public static final String ProductNAME = "ProductName";
+    public static final String Price = "Price";
+    public static final String Quantity = "Quantity";
+    public static final String Discount = "Discount";
     //Create Table Query
-    private static final String SQL_CREATE_ORDERS =
-            "CREATE TABLE "+TABLE_NAME +"("+ProductID+" INTEGER PRIMARY KEY,"+ProductNAME+"TEXT,"+Quantity+" INTEGER,"+Price+" INTEGER,"+Discount+" INTEGER);";
-
-    private static final String SQL_DELETE_ORDERS =
-            "DROP TABLE IF EXISTS " + TABLE_NAME;
 
 
     public Database(Context context) {
@@ -51,18 +47,7 @@ public class Database extends SQLiteOpenHelper {
 
 
 
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        db.execSQL(SQL_CREATE_ORDERS);
 
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-        this.onUpgrade(db, oldVersion, newVersion);
-
-    }
 
 
 
@@ -81,8 +66,8 @@ public class Database extends SQLiteOpenHelper {
         if(c.moveToFirst())
         {
             do{
-                result.add(new Order(c.getString(c.getColumnIndex("ProductID")),
-                c.getString(c.getColumnIndex("ProductNAME")),
+                result.add(new Order(c.getString(c.getColumnIndex("ProductId")),
+                c.getString(c.getColumnIndex("ProductName")),
                 c.getString(c.getColumnIndex("Quantity")),
                 c.getString(c.getColumnIndex("Price")),
                 c.getString(c.getColumnIndex("Discount"))
@@ -98,7 +83,8 @@ public class Database extends SQLiteOpenHelper {
 
     public void addToCart(Order order1) {
         SQLiteDatabase db = getReadableDatabase();
-        String query = String.format("INSERT INTO " +TABLE_NAME+ "(pro_id,name,quantity,price,discount) VALUES('%s','%s','%s','%s','%s');",
+        String query = String.format("INSERT INTO OrderDetail(ProductId,ProductName,Quantity,Price,Discount) VALUES('%s','%s','%s','%s','%s');",
+
 
 
                 order1.getProductID(),
@@ -112,7 +98,7 @@ public class Database extends SQLiteOpenHelper {
 
     public void cleanCart() {
         SQLiteDatabase db = getReadableDatabase();
-        String query = String.format("DELETE FROM " + TABLE_NAME + ";");
+        String query = String.format("DELETE FROM OrderDetail");
 
 
         db.execSQL(query);
