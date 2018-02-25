@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.atul_.eatit.Common.Common;
@@ -23,8 +24,31 @@ import io.paperdb.Paper;
 public class SignIn extends AppCompatActivity {
     EditText edtPhone,edtPassword;
     Button btnSignIn;
+    TextView btnSignUp;
     ProgressDialog progressDialog;
 
+    public final boolean validate() {
+        boolean valid = true;
+
+        String phone = edtPhone.getText().toString();
+        String password = edtPassword.getText().toString();
+
+        if (phone.isEmpty() ) {
+            edtPhone.setError("enter a valid User Id");
+            valid = false;
+        } else {
+            edtPhone.setError(null);
+        }
+
+        if (password.isEmpty()) {
+            edtPassword.setError("between 4 and 10 alphanumeric characters");
+            valid = false;
+        } else {
+            edtPassword.setError(null);
+        }
+
+        return valid;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,19 +59,21 @@ public class SignIn extends AppCompatActivity {
         edtPassword = (EditText) findViewById(R.id.edtpassword);
         edtPhone = (EditText) findViewById(R.id.edtphone);
         btnSignIn = (Button) findViewById(R.id.btnSignIn);
-
-
-
+        btnSignUp=(TextView)findViewById(R.id.btnSignUp);
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
 
+
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference table_user = database.getReference("User");
+
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                validate();
                 final ProgressDialog mDialog=new ProgressDialog(SignIn.this);
                 mDialog.setMessage("Please wait");
                 mDialog.show();
@@ -80,9 +106,6 @@ public class SignIn extends AppCompatActivity {
                         }
 
                     }
-
-
-
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
 
@@ -93,5 +116,15 @@ public class SignIn extends AppCompatActivity {
             }
         });
 
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // Start the Signup activity
+                Intent intent = new Intent(getApplicationContext(), SignUp.class);
+                startActivity(intent);
+            }
+        });
     }
+
 }

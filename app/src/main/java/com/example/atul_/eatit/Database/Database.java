@@ -31,33 +31,18 @@ public class Database extends SQLiteAssetHelper {
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "EatIt.db";
 
-    public static final String TABLE_NAME = "OrderDetail";
-    public static final String ProductID = "ProductId";
-    public static final String ProductNAME = "ProductName";
-    public static final String Price = "Price";
-    public static final String Quantity = "Quantity";
-    public static final String Discount = "Discount";
-    //Create Table Query
-
-
     public Database(Context context) {
+
         super(context, DATABASE_NAME,null, DATABASE_VERSION);
     }
-
-
-
-
-
-
-
 
     public List<Order>getCarts()
     {
             SQLiteDatabase db = getReadableDatabase();
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
 
-        String[] sqlSelect={"ProductID,ProductNAME,Quantity,Price,Discount"};
-        String sqlTable=TABLE_NAME;
+        String[] sqlSelect={"ProductNAME","ProductID","Quantity","Price","Discount"};
+        String sqlTable="OrderDetail";
 
         qb.setTables(sqlTable);
 
@@ -66,8 +51,8 @@ public class Database extends SQLiteAssetHelper {
         if(c.moveToFirst())
         {
             do{
-                result.add(new Order(c.getString(c.getColumnIndex("ProductId")),
-                c.getString(c.getColumnIndex("ProductName")),
+                result.add(new Order(c.getString(c.getColumnIndex("ProductID")),
+                c.getString(c.getColumnIndex("ProductNAME")),
                 c.getString(c.getColumnIndex("Quantity")),
                 c.getString(c.getColumnIndex("Price")),
                 c.getString(c.getColumnIndex("Discount"))
@@ -81,17 +66,14 @@ public class Database extends SQLiteAssetHelper {
 
 
 
-    public void addToCart(Order order1) {
+    public void addToCart(Order order) {
         SQLiteDatabase db = getReadableDatabase();
-        String query = String.format("INSERT INTO OrderDetail(ProductId,ProductName,Quantity,Price,Discount) VALUES('%s','%s','%s','%s','%s');",
-
-
-
-                order1.getProductID(),
-                order1.getProductNAME(),
-                order1.getQuantity(),
-                order1.getPrice(),
-                order1.getDiscount());
+        String query = String.format("INSERT INTO OrderDetail(ProductID,ProductNAME,Quantity,Price,Discount) VALUES('%s','%s','%s','%s','%s');",
+                order.getProductID(),
+                order.getProductNAME(),
+                order.getQuantity(),
+                order.getPrice(),
+                order.getDiscount());
         db.execSQL(query);
 
     }

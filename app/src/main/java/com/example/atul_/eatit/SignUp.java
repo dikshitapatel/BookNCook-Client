@@ -20,6 +20,30 @@ public class SignUp extends AppCompatActivity {
  EditText edtName,edtPhone,edtPassword;
     Button btnSignUp;
     ProgressDialog progressDialog;
+
+    public boolean validate() {
+        boolean valid = true;
+
+        String phone = edtPhone.getText().toString();
+        String password = edtPassword.getText().toString();
+
+        if (phone.isEmpty() ) {
+            edtPhone.setError("enter a valid User Id");
+            valid = false;
+        } else {
+            edtPhone.setError(null);
+        }
+
+        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
+            edtPassword.setError("between 4 and 10 alphanumeric characters");
+            valid = false;
+        } else {
+            edtPassword.setError(null);
+        }
+
+        return valid;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,20 +59,21 @@ public class SignUp extends AppCompatActivity {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference table_user = database.getReference("User");
-
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final ProgressDialog mDialog=new ProgressDialog(SignUp.this);
+                validate();
                 mDialog.setMessage("Please wait");
                 mDialog.show();
+
 
                 table_user.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if (dataSnapshot.child(edtPhone.getText().toString()).exists()) {
                             mDialog.dismiss();
-                            Toast.makeText(SignUp.this, "User already exists", Toast.LENGTH_SHORT).show();
+                            edtPhone.setError("User Already exists");
 
                         }
                         else

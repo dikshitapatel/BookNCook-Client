@@ -63,7 +63,6 @@
             android:layout_marginRight="8dp"
             android:text="Place Order"
             android:textColor="@android:color/white"
-            app:buttonColor="@color/btnSignActive"
             app:cornerRadius="4dp"
             app:shadowColor="@android:color/black"
             app:shadowEnabled="true"

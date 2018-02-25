@@ -54,11 +54,8 @@ public class FoodDetail extends AppCompatActivity {
 
              @Override
 
-
-                                       public void onClick(View view) {
-
-
-                                           new Database(getBaseContext()).addToCart(new Order(
+                                            public void onClick(View view) {
+                                            new Database(getBaseContext()).addToCart(new Order(
                                                    foodId,
                                                    currentFood.getName(),
                                                    numberButton.getNumber(),
@@ -69,9 +66,8 @@ public class FoodDetail extends AppCompatActivity {
                                            ));
 
                  Toast.makeText(FoodDetail.this, "Added to cart ", Toast.LENGTH_SHORT).show();
-
-                 Intent database = new Intent(FoodDetail.this,Database.class);
-                                           startActivity(database);
+                /* Intent database = new Intent(FoodDetail.this,Database.class);
+                                           startActivity(database);*/
 
                                        }
 

@@ -1,99 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg"
-    tools:context="com.example.atul_.eatit.SignIn">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true"
+    android:background="@drawable/bg">
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/linearLayout">
+        android:paddingTop="56dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
 
-        <com.rengwuxian.materialedittext.MaterialAutoCompleteTextView
-            android:id="@+id/edtphone"
-            android:hint="Phone Number"
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="72dp"
+            android:layout_marginBottom="24dp"
+            android:layout_gravity="center_horizontal" />
+
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@android:color/black"
-            android:text="101"
-            android:textColor="@android:color/black"
-            android:textSize="34dp"
-            android:inputType="phone"
-            app:met_maxCharacters="11"
-            app:met_primaryColor="@android:color/black"
-
-
-            />
-        <com.rengwuxian.materialedittext.MaterialAutoCompleteTextView
-            android:id="@+id/edtpassword"
-            android:hint="Password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHint="@android:color/black"
-            android:text="123"
-            android:textColor="@android:color/black"
-            android:textSize="34dp"
-            android:inputType="textPassword"
-            app:met_maxCharacters="11"
-            app:met_primaryColor="@android:color/black"
-
-
-            />
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="2"
-            android:orientation="horizontal" >
-
-        <com.rey.material.widget.CheckBox
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/ckb"
-            android:layout_weight="1"
-            android:text="Remember Me"
-            android:textColor="@android:color/black"
-            android:gravity="center_vertical"/>
-
-
-
-            <TextView
-                android:layout_width="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText
+                android:id="@+id/edtphone"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/fp"
-                android:layout_weight="1"
-                android:text="Forgot Password?"
-                android:textColor="@android:color/black" />
-        </LinearLayout>
+                android:inputType="text"
+                android:hint="User Id" />
+        </android.support.design.widget.TextInputLayout>
 
+        <!-- Password Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText
+                android:id="@+id/edtpassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:hint="Password"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btnSignIn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="24dp"
+            android:padding="12dp"
+            android:text="Login" />
+
+        <TextView
+            android:id="@+id/btnSignUp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="No account yet? Create one"
+            android:gravity="center"
+            android:textSize="16dip"/>
 
     </LinearLayout>
-
-    <info.hoang8f.widget.FButton
-        android:id="@+id/btnSignIn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:text="SignIn"
-        android:textColor="@android:color/black"
-        app:buttonColor="@color/btnSignActive"
-        app:cornerRadius="4dp"
-        app:shadowColor="@android:color/black"
-        app:shadowEnabled="true"
-        app:shadowHeight="5dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="20dp"/>
-
-</RelativeLayout>
+</ScrollView>
