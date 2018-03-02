@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.atul_.eatit.Common.Common;
 import com.example.atul_.eatit.Interface.ItemClickListener;
 import com.example.atul_.eatit.ViewHolder.FoodViewHolder;
 import com.example.atul_.eatit.model.Food;
@@ -47,7 +48,15 @@ public class FoodList extends AppCompatActivity {
             categoryId=getIntent().getStringExtra("CategoryId");
         if(!categoryId.isEmpty() && categoryId!= null)
         {
-            loadListFood(categoryId);
+
+            if(Common.isConnectedToInternet(getBaseContext()))
+                loadListFood(categoryId);
+
+            else {
+                Toast.makeText(FoodList.this, "Please check your connection", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
 
         }
     }

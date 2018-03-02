@@ -16,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.atul_.eatit.Common.*;
 import com.example.atul_.eatit.Interface.ItemClickListener;
@@ -25,6 +26,8 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
+
+import io.paperdb.Paper;
 
 import static com.example.atul_.eatit.Permission.requestForPermission;
 
@@ -49,6 +52,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         database = FirebaseDatabase.getInstance();
         category = database.getReference("Category");
+
+        Paper.init(this);
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -83,8 +89,20 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         recycler_menu.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recycler_menu.setLayoutManager(layoutManager);
-        loadMenu();
+
+
+        if(Common.isConnectedToInternet(this))
+
+
+            loadMenu();
+        else {
+            Toast.makeText(this, "Please check your connection", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
     }
+
 
     private void loadMenu() {
         adapter = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(Category.class,R.layout.menu_item,MenuViewHolder.class,category) {
@@ -127,6 +145,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
             public boolean onOptionsItemSelected(MenuItem item) {
 
+                //if (item. getItemId() == R.id.refresh)
+                    //loadMenu();
+
+
 
                 return super.onOptionsItemSelected(item);
             }
@@ -144,7 +166,15 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
                 } else if (id == R.id.nav_logout) {
 
-                }
+                     Paper.book().destroy();
+
+
+                     Intent signIn=new Intent(Home.this,SignIn.class);
+                     signIn.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                     startActivity(signIn);
+
+
+                 }
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
