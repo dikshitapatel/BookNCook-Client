@@ -120,7 +120,7 @@ public class Database extends SQLiteOpenHelper {
     public void removeFromFavorites(String foodId)
     {
         SQLiteDatabase db=getReadableDatabase();
-        String query=String.format("REMOVE FROM Favorites WHERE FoodId='%s';",foodId);
+        String query=String.format("DELETE FROM Favorites WHERE FoodId='%s';",foodId);
         db.execSQL(query);
     }
 

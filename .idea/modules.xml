@@ -3,12 +3,14 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/bookncook_30jan.iml" filepath="$PROJECT_DIR$/bookncook_30jan.iml" />
       <module fileurl="file://$PROJECT_DIR$/bookncook_30janfinal.iml" filepath="$PROJECT_DIR$/bookncook_30janfinal.iml" />
       <module fileurl="file://$PROJECT_DIR$/bookncook_menu17.iml" filepath="$PROJECT_DIR$/bookncook_menu17.iml" />
       <module fileurl="file://$PROJECT_DIR$/bookncook_menu26jan.iml" filepath="$PROJECT_DIR$/bookncook_menu26jan.iml" />
       <module fileurl="file://$PROJECT_DIR$/cart.iml" filepath="$PROJECT_DIR$/cart.iml" />
       <module fileurl="file://$PROJECT_DIR$/cart25.iml" filepath="$PROJECT_DIR$/cart25.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fav.iml" filepath="$PROJECT_DIR$/fav.iml" />
       <module fileurl="file://$PROJECT_DIR$/insertpending.iml" filepath="$PROJECT_DIR$/insertpending.iml" />
     </modules>
   </component>
