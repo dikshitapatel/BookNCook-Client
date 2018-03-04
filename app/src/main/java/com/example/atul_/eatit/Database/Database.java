@@ -25,15 +25,38 @@ import static android.R.attr.name;
 
 
 
-public class Database extends SQLiteAssetHelper {
+public class Database extends SQLiteOpenHelper {
 
 
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "EatIt.db";
 
+    public static SQLiteDatabase db;
+
+
     public Database(Context context) {
 
         super(context, DATABASE_NAME,null, DATABASE_VERSION);
+    }
+
+
+
+
+    @Override
+    public void onCreate(SQLiteDatabase d) {
+
+
+
+        db=d;
+        db.execSQL("CREATE TABLE IF NOT EXISTS Favorites(FoodId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE);");
+
+
+
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
     }
 
     public List<Order>getCarts()
@@ -85,6 +108,34 @@ public class Database extends SQLiteAssetHelper {
 
         db.execSQL(query);
 
+    }
+
+    public void addToFavorites(String foodId)
+    {
+        SQLiteDatabase db=getReadableDatabase();
+        String query=String.format("INSERT INTO Favorites(FoodId) VALUES(%s);",foodId);
+        db.execSQL(query);
+    }
+
+    public void removeFromFavorites(String foodId)
+    {
+        SQLiteDatabase db=getReadableDatabase();
+        String query=String.format("REMOVE FROM Favorites WHERE FoodId='%s';",foodId);
+        db.execSQL(query);
+    }
+
+   public boolean isFavorites(String foodId)
+    {
+        SQLiteDatabase db=getReadableDatabase();
+        String query=String.format("SELECT * FROM Favorites WHERE FoodId='%s';",foodId);
+        Cursor cursor=db.rawQuery(query,null);
+        if (cursor.getCount()<=0)
+        {
+            cursor.close();
+            return false;
+        }
+        cursor.close();
+        return true;
     }
 
 

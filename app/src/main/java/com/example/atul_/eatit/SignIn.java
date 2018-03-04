@@ -3,6 +3,8 @@ package com.example.atul_.eatit;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,6 +39,7 @@ public class SignIn extends AppCompatActivity {
 
 
 
+    @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     public final boolean validate() {
         boolean valid = true;
 
@@ -61,6 +64,7 @@ public class SignIn extends AppCompatActivity {
         return valid;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +73,7 @@ public class SignIn extends AppCompatActivity {
 
         edtPassword = (EditText) findViewById(R.id.edtpassword);
         edtPhone = (EditText) findViewById(R.id.edtphone);
+
         btnSignIn = (Button) findViewById(R.id.btnSignIn);
         ckbRemember = (CheckBox) findViewById(R.id.ckbRemember);
         txtForgotPwd = (TextView) findViewById(R.id.txtForgotPwd);
@@ -94,6 +99,7 @@ public class SignIn extends AppCompatActivity {
 
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
             @Override
             public void onClick(View view) {
 
@@ -185,26 +191,27 @@ public class SignIn extends AppCompatActivity {
         LayoutInflater inflater=this.getLayoutInflater();
         View forgot_view=inflater.inflate(R.layout.forgot_password_layout,null);
         builder.setView(forgot_view);
+        builder.setIcon(R.drawable.ic_security_black_24dp);
 
         final MaterialEditText edtPhone=(MaterialEditText)forgot_view.findViewById(R.id.edtphone);
         final MaterialEditText edtSecureCode=(MaterialEditText)forgot_view.findViewById(R.id.edtSecureCode);
 
         builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(DialogInterface dialogInterface, int i) {
 
-                table_user.addValueEventListener(new ValueEventListener() {
+                 table_user.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        User user=dataSnapshot.child(edtPhone.getText().toString()).getValue(User.class);
+                        User user = dataSnapshot.child(edtPhone.getText().toString()).getValue(User.class);
 
-                        if (user.getSecureCode().equals(edtSecureCode.getText().toString()))
-                            Toast.makeText(SignIn.this,"Your password:"+user.getPassword(),Toast.LENGTH_SHORT).show();
+                        String sc=edtSecureCode.getText().toString();
 
-
-                        else
-                            Toast.makeText(SignIn.this,"Wrong secure code",Toast.LENGTH_SHORT).show();
-
+                        if (user!=null && user.getSecureCode().equals(sc)) {
+                            Toast.makeText(SignIn.this, "Your password:" + user.getPassword(), Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(SignIn.this, "Wrong secure code", Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                     @Override
