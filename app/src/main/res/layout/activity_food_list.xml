@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.atul_.eatit.FoodList">
 
-
+    <com.mancj.materialsearchbar.MaterialSearchBar
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/searchBar"
+        app:mt_speechMode="false"
+        android:layout_alignParentTop="true"
+        app:mt_hint="Search Food"
+        />
 
     <android.support.v7.widget.RecyclerView
-        android:layout_height="0dp"
-        android:layout_width="0dp"
+        android:layout_below="@id/searchBar"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
         android:id="@+id/recycler_food"
         android:scrollbars="vertical"
         tools:layout_editor_absoluteY="8dp"
         tools:layout_editor_absoluteX="8dp"
         />
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

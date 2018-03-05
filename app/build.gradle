@@ -29,8 +29,8 @@ dependencies {
 
     compile 'io.paperdb:paperdb:2.1'
     compile 'com.github.rey5137:material:1.2.4'
-
     compile 'com.android.support:design:25.2.0'
+    compile 'com.github.mancj:MaterialSearchBar:0.7.1'
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     compile 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
     compile 'com.cepheuen.elegant-number-button:lib:1.0.2'

@@ -88,9 +88,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         recycler_menu=(RecyclerView)findViewById(R.id.recycler_menu);
         recycler_menu.setHasFixedSize(true);
-       // layoutManager = new LinearLayoutManager(this);
-       // recycler_menu.setLayoutManager(layoutManager);
-        recycler_menu.setLayoutManager(new GridLayoutManager(this,2));
+        layoutManager = new LinearLayoutManager(this);
+       recycler_menu.setLayoutManager(layoutManager);
+        //recycler_menu.setLayoutManager(new GridLayoutManager(this,2));
 
 
         if(Common.isConnectedToInternet(this))
@@ -112,13 +112,13 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 viewHolder.txtMenuName.setText(model.getName());
                 Picasso.with(getBaseContext()).load(model.getImage())
                         .into(viewHolder.imageView);
-               //final Category clickItem = model;
+                //final Category clickItem = model;
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-               //        Toast.makeText(Home.this, ""+clickItem.getName(), Toast.LENGTH_SHORT).show();
+                        //        Toast.makeText(Home.this, ""+clickItem.getName(), Toast.LENGTH_SHORT).show();
                         Intent foodList = new Intent(Home.this, FoodList.class);
-                     foodList.putExtra("CategoryId",adapter.getRef(position).getKey());
+                        foodList.putExtra("CategoryId",adapter.getRef(position).getKey());
                         startActivity(foodList);
                     }
                 });
@@ -146,11 +146,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             }
 
             public boolean onOptionsItemSelected(MenuItem item) {
-
-                //if (item. getItemId() == R.id.refresh)
-                    //loadMenu();
-
-
 
                 return super.onOptionsItemSelected(item);
             }

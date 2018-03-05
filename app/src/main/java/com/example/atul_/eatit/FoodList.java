@@ -66,57 +66,57 @@ public class FoodList extends AppCompatActivity {
     }
 
     private void loadListFood(String categoryId) {
-      adapter=new FirebaseRecyclerAdapter<Food,FoodViewHolder> (Food.class,R.layout.food_item,FoodViewHolder.class,
-                       foodList.orderByChild("MenuId").equalTo(categoryId)
-      ){
-          protected void populateViewHolder(final FoodViewHolder viewHolder, final Food model, final int position){
-              viewHolder.food_name.setText(model.getName());
-              viewHolder.food_price.setText(String.format("$ %s",model.getPrice().toString()));
-              Picasso.with(getBaseContext()).load(model.getImage()).into(viewHolder.food_image);
+        adapter=new FirebaseRecyclerAdapter<Food,FoodViewHolder> (Food.class,R.layout.food_item,FoodViewHolder.class,
+                foodList.orderByChild("MenuId").equalTo(categoryId)
+        ){
+            protected void populateViewHolder(final FoodViewHolder viewHolder, final Food model, final int position){
+                viewHolder.food_name.setText(model.getName());
+                Picasso.with(getBaseContext()).load(model.getImage()).into(viewHolder.food_image);
 
-              if (localDB.isFavorites(adapter.getRef(position).getKey()))
-                  viewHolder.fav_image.setImageResource(R.drawable.ic_favorite_black_24dp);
+                if (localDB.isFavorites(adapter.getRef(position).getKey()))
+                    viewHolder.fav_image.setImageResource(R.drawable.ic_favorite_black_24dp);
 
-              viewHolder.fav_image.setOnClickListener(new View.OnClickListener() {
-                  @Override
-                  public void onClick(View v) {
-                      if (!localDB.isFavorites(adapter.getRef(position).getKey()))
-                      {
-                          localDB.addToFavorites(adapter.getRef(position).getKey());
-                          viewHolder.fav_image.setImageResource(R.drawable.ic_favorite_black_24dp);
-                          Toast.makeText(FoodList.this,""+model.getName()+"was added to favorites",Toast.LENGTH_SHORT).show();
+                viewHolder.fav_image.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (!localDB.isFavorites(adapter.getRef(position).getKey()))
+                        {
+                            localDB.addToFavorites(adapter.getRef(position).getKey());
+                            viewHolder.fav_image.setImageResource(R.drawable.ic_favorite_black_24dp);
+                            Toast.makeText(FoodList.this,""+model.getName()+"was added to favorites",Toast.LENGTH_SHORT).show();
 
-                      }
-                      else
-                      {
-                          localDB.removeFromFavorites(adapter.getRef(position).getKey());
-                          viewHolder.fav_image.setImageResource(R.drawable.ic_favorite_border_black_24dp);
-                          Toast.makeText(FoodList.this,""+model.getName()+"was removed from favorites",Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            localDB.removeFromFavorites(adapter.getRef(position).getKey());
+                            viewHolder.fav_image.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+                            Toast.makeText(FoodList.this,""+model.getName()+"was removed from favorites",Toast.LENGTH_SHORT).show();
 
-                      }
+                        }
 
-                  }
-              });
-
-
-
-              final Food local = model;
-              viewHolder.setItemClickListener(new ItemClickListener() {
-                  @Override
-                  public void onClick(View view, int position, boolean isLongClick) {
-
-                    Intent foodDetail = new Intent(FoodList.this,FoodDetail.class);
-                     foodDetail.putExtra("FoodId",adapter.getRef(position).getKey());
-                      startActivity(foodDetail);
-                  }
-              });
-
-          }
-      };
+                    }
+                });
 
 
 
-      recyclerView.setAdapter(adapter);
+                final Food local = model;
+                viewHolder.setItemClickListener(new ItemClickListener() {
+                    @Override
+                    public void onClick(View view, int position, boolean isLongClick) {
+
+                        Intent foodDetail = new Intent(FoodList.this,FoodDetail.class);
+                        foodDetail.putExtra("FoodId",adapter.getRef(position).getKey());
+                        startActivity(foodDetail);
+                    }
+                });
+
+            }
+        };
+
+
+
+        recyclerView.setAdapter(adapter);
 
     }
 }
+
