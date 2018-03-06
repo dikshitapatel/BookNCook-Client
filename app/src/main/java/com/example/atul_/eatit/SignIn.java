@@ -115,7 +115,9 @@ public class SignIn extends AppCompatActivity {
                     final ProgressDialog mDialog = new ProgressDialog(SignIn.this);
                     mDialog.setMessage("Please wait");
                    mDialog.show();
-                    table_user.addValueEventListener(new ValueEventListener() {
+
+
+                    table_user.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             if (dataSnapshot.child(edtPhone.getText().toString()).exists()) {
@@ -129,6 +131,8 @@ public class SignIn extends AppCompatActivity {
                                     Common.currentUser = user;
                                     startActivity(homeIntent);
                                     finish();
+
+                                    table_user.removeEventListener(this);
                                 } else {
                                     Toast.makeText(SignIn.this, "Sign in failed", Toast.LENGTH_SHORT).show();
                                 }
