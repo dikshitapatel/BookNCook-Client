@@ -157,11 +157,17 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL(query);
     }
 
-    public Cursor getAData(){
+    public void getAData(){
         SQLiteDatabase db = this.getWritableDatabase();
-        String selectAQuery = "SELECT * FROM OrderDetail";
-        Cursor re = db.rawQuery(selectAQuery,null);
-        return re;
+        String query=String.format("SELECT * FROM OrderDetail");
+        Cursor cursor=db.rawQuery(query,null);
+        if (cursor.getCount()<=0)
+        {
+            cursor.close();
+
+        }
+        cursor.close();
+
     }
 
    public boolean isFavorites(String foodId)

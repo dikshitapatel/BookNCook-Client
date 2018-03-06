@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.atul_.eatit.Interface.ItemClickListener;
+import com.example.atul_.eatit.R;
 
 /**
  * Created by Admin on 06-Mar-18.

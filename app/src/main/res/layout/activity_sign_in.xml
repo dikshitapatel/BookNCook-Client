@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:padding="20dp"
-    android:background="@color/colorGreen">
+    >
 
     <LinearLayout
         android:id="@+id/login_layout"
@@ -35,8 +35,6 @@
             android:hint="User Id"
             android:inputType="text"
             android:padding="10dp"
-
-
             android:textSize="16sp" />
 
         <View
@@ -56,7 +54,6 @@
             android:hint="Password"
             android:inputType="textPassword"
             android:padding="10dp"
-
             android:textSize="16sp" />
 
         <LinearLayout
@@ -67,28 +64,26 @@
             android:paddingTop="8dp" >
 
             <CheckBox
-                android:id="@+id/show_hide_password"
+                android:id="@+id/ckbRemember"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Remember Me"
-
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/forgot_password"
+                android:id="@+id/txtForgotPwd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="end"
                 android:padding="5dp"
                 android:text="Forgot Password"
-
                 android:textSize="14sp" />
         </LinearLayout>
 
         <Button
-            android:id="@+id/btnSignUp"
+            android:id="@+id/btnSignIn"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
@@ -101,7 +96,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/txtForgotPwd"
+        android:id="@+id/btnSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"

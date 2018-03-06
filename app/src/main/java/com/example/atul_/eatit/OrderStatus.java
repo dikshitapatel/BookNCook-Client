@@ -1,25 +1,21 @@
 package com.example.atul_.eatit;
 
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.app.*;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.atul_.eatit.Common.Common;
 import com.example.atul_.eatit.ViewHolder.OrderViewHolder;
+import com.example.atul_.eatit.model.Request;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Request;
-
-/**
- * Created by Admin on 06-Mar-18.
- */
 
 public class OrderStatus extends AppCompatActivity {
 
-    RecyclerView recyclerView;
-    RecyclerView.LayoutManager layoutManager;
+    public RecyclerView recyclerView;
+    public RecyclerView.LayoutManager layoutManager;
 
     FirebaseRecyclerAdapter<Request,OrderViewHolder> adapter;
 
@@ -61,15 +57,15 @@ public class OrderStatus extends AppCompatActivity {
 
     }
 
-    public static String codeConversion(String status) {
-        {
-            if (status.equals("0"))
-                return "Placed";
-            else if(status.equals("1"))
-                return "On The Way";
-            else
-                return "Shipped";
-        }
+    private String codeConversion(String status) {
+        if(status.equals("0"))
+            return "Placed";
+        else if(status.equals("1"))
+            return "On The Way";
+        else
+            return "Shipped";
+
     }
+
 
 }
