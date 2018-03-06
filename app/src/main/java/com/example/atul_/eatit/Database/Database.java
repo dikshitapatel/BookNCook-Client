@@ -1,10 +1,12 @@
 package com.example.atul_.eatit.Database;
 
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 
@@ -33,6 +35,9 @@ public class Database extends SQLiteOpenHelper {
 
     public static SQLiteDatabase db;
 
+    public String f1,f2,f3,f4,f5;
+
+
 
     public Database(Context context) {
 
@@ -48,38 +53,58 @@ public class Database extends SQLiteOpenHelper {
 
 
         db=d;
+
+        db.execSQL("CREATE TABLE IF NOT EXISTS OrderDetail(ProductId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE," +
+                "ProductName TEXT," +
+                "Price INTEGER," +
+                "Quantity INTEGER," +
+                "Discount INTEGER);");
+
         db.execSQL("CREATE TABLE IF NOT EXISTS Favorites(FoodId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE);");
 
 
 
     }
 
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-    }
 
     public List<Order>getCarts()
     {
-            SQLiteDatabase db = getReadableDatabase();
+
+
+        try{
+            db=SQLiteDatabase.openDatabase("EatIt.db",null,Context.MODE_PRIVATE);
+            // String path ="D:\EatIt.db" + DATABASE_NAME;
+            //  SQLiteDatabase checkDB = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY);
+            //System.out.println(checkDB);
+        } catch(SQLiteException e){
+            System.out.println("Exception");
+        }
+
+
+        //SQLiteDatabase db = getReadableDatabase();
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
 
-        String[] sqlSelect={"ProductNAME","ProductID","Quantity","Price","Discount"};
+        String[] sqlSelect={"ProductId,ProductName,Quantity,Price,Discount"};
         String sqlTable="OrderDetail";
+
+
 
         qb.setTables(sqlTable);
 
+
         Cursor c = qb.query(db,sqlSelect,null,null,null,null,null);
+
         final List<Order>result = new ArrayList<>();
         if(c.moveToFirst())
         {
             do{
-                result.add(new Order(c.getString(c.getColumnIndex("ProductID")),
-                c.getString(c.getColumnIndex("ProductNAME")),
-                c.getString(c.getColumnIndex("Quantity")),
-                c.getString(c.getColumnIndex("Price")),
-                c.getString(c.getColumnIndex("Discount"))
-                        ));
+                result.add(new Order(c.getString(c.getColumnIndex("ProductId")),
+                        c.getString(c.getColumnIndex("ProductName")),
+                        c.getString(c.getColumnIndex("Quantity")),
+                        c.getString(c.getColumnIndex("Price")),
+                        c.getString(c.getColumnIndex("Discount"))
+                ));
 
             }while(c.moveToNext());
         }
@@ -89,15 +114,23 @@ public class Database extends SQLiteOpenHelper {
 
 
 
-    public void addToCart(Order order) {
-        SQLiteDatabase db = getReadableDatabase();
-        String query = String.format("INSERT INTO OrderDetail(ProductID,ProductNAME,Quantity,Price,Discount) VALUES('%s','%s','%s','%s','%s');",
-                order.getProductID(),
-                order.getProductNAME(),
-                order.getQuantity(),
-                order.getPrice(),
-                order.getDiscount());
-        db.execSQL(query);
+    public void insert(String foodId, String name, String number, String price, String discount) {
+
+
+        //String query = String.format("INSERT INTO OrderDetail(ProductId,ProductName,Quantity,Price,Discount) VALUES('%s','%s','%s','%s','%s');",
+        //Order order1 = null;
+
+        SQLiteDatabase db=this.getWritableDatabase();
+
+        ContentValues values=new ContentValues();
+
+        values.put("ProductId",foodId);
+        values.put("ProductName",name);
+        values.put("Quantity",number);
+        values.put("Price",price);
+        values.put("Discount",discount);
+
+        db.insert("OrderDetail", null, values);
 
     }
 
@@ -124,6 +157,13 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL(query);
     }
 
+    public Cursor getAData(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String selectAQuery = "SELECT * FROM OrderDetail";
+        Cursor re = db.rawQuery(selectAQuery,null);
+        return re;
+    }
+
    public boolean isFavorites(String foodId)
     {
         SQLiteDatabase db=getReadableDatabase();
@@ -136,6 +176,11 @@ public class Database extends SQLiteOpenHelper {
         }
         cursor.close();
         return true;
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
     }
 
 

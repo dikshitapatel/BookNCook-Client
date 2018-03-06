@@ -1,6 +1,8 @@
 package com.example.atul_.eatit;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +30,10 @@ public class FoodDetail extends AppCompatActivity {
     CollapsingToolbarLayout collapsingToolbarLayout;
     FloatingActionButton btnCart;
     ElegantNumberButton numberButton;
+    SQLiteDatabase db;
+    Order o;
+    Database d=new Database(FoodDetail.this);
+
 
 
 
@@ -55,23 +61,27 @@ public class FoodDetail extends AppCompatActivity {
              @Override
 
                                             public void onClick(View view) {
-                                            new Database(getBaseContext()).addToCart(new Order(
-                                                   foodId,
-                                                   currentFood.getName(),
-                                                   numberButton.getNumber(),
-                                                   currentFood.getPrice(),
-                                                   currentFood.getDiscount()
 
 
-                                           ));
+
+                 db=openOrCreateDatabase("EatIt.db", Context.MODE_PRIVATE,null);
+
 
                  Toast.makeText(FoodDetail.this, "Added to cart ", Toast.LENGTH_SHORT).show();
-                /* Intent database = new Intent(FoodDetail.this,Database.class);
-                                           startActivity(database);*/
 
-                                       }
 
-                                   });
+                 d.getAData();
+
+
+
+
+             }
+
+        });
+
+
+
+
 
 
         food_description = (TextView)findViewById(R.id.food_description);
