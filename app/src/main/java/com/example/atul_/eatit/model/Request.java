@@ -20,13 +20,7 @@ public class Request {
 
     }
 
-    public String getStatus() {
-        return status;
-    }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     public Request(String phone, String name, String address, String total, List<Order> foods) {
         this.phone = phone;
@@ -35,6 +29,13 @@ public class Request {
         this.total = total;
         this.foods = foods;
         this.status="0";
+    }
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getPhone() {

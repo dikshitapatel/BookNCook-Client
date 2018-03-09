@@ -14,16 +14,19 @@ import com.example.atul_.eatit.R;
 
 public class OrderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,View.OnCreateContextMenuListener {
 
-    public TextView txtOrderId, txtOrderStatus, txtOrderPhone, txtOrderAddress;
+    public TextView txtOrderId;
+    public TextView txtOrderPhone;
+    public TextView txtOrderAddress;
+    public TextView txtOrderStatus;
     private ItemClickListener itemClickListener;
 
     public OrderViewHolder(View itemView) {
         super(itemView);
 
-        txtOrderId = (TextView) itemView.findViewById(R.id.orderName);
-        txtOrderStatus = (TextView) itemView.findViewById(R.id.orderStatus);
-        txtOrderPhone = (TextView) itemView.findViewById(R.id.orderPhone);
-        txtOrderAddress = (TextView) itemView.findViewById(R.id.orderAddress);
+        txtOrderId = (TextView)itemView.findViewById(R.id.order_Name);
+        txtOrderStatus = (TextView)itemView.findViewById(R.id.order_Status);
+        txtOrderPhone = (TextView)itemView.findViewById(R.id.order_Phone);
+        txtOrderAddress = (TextView)itemView.findViewById(R.id.order_Address );
 
         itemView.setOnClickListener(this);
         itemView.setOnCreateContextMenuListener(this);

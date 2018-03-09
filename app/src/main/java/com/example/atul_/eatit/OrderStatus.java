@@ -41,12 +41,17 @@ public class OrderStatus extends AppCompatActivity {
     }
 
     private void loadOrders(String phone) {
-        adapter= new FirebaseRecyclerAdapter<Request, OrderViewHolder>(
-                Request.class, R.layout.order_layout, OrderViewHolder.class, requests.orderByChild("phone").equalTo(phone)) {
+        adapter = new FirebaseRecyclerAdapter<Request, OrderViewHolder>(
+                Request.class,
+                R.layout.order_layout,
+                OrderViewHolder.class,
+                requests.orderByChild("phone")
+                        .equalTo(phone)
+        ) {
             @Override
             protected void populateViewHolder(OrderViewHolder viewHolder, Request model, int position) {
                 viewHolder.txtOrderId.setText(adapter.getRef(position).getKey());
-                viewHolder.txtOrderStatus.setText(codeConversion(model.getStatus()));
+                viewHolder.txtOrderStatus.setText(convertCodeToStatus(model.getStatus()));
                 viewHolder.txtOrderPhone.setText(model.getPhone());
                 viewHolder.txtOrderAddress.setText(model.getAddress());
 
@@ -57,7 +62,7 @@ public class OrderStatus extends AppCompatActivity {
 
     }
 
-    private String codeConversion(String status) {
+    private String convertCodeToStatus(String status) {
         if(status.equals("0"))
             return "Placed";
         else if(status.equals("1"))

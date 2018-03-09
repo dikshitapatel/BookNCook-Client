@@ -27,6 +27,7 @@
             android:theme="@style/AppTheme"/>
         <activity android:name=".FoodList"/>
         <activity android:name=".FoodDetail"/>
+        <activity android:name=".OrderStatus"/>
         <activity android:name=".Cart">
         </activity>
     </application>

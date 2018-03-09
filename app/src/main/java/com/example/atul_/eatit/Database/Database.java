@@ -111,6 +111,20 @@ public class Database extends SQLiteOpenHelper {
         return result;
     }
 
+    public void addToCart(Order order1) {
+        SQLiteDatabase db = getWritableDatabase();
+        String query = String.format("INSERT INTO OrderDetail(ProductID,ProductNAME,Price,Quantity,Discount) VALUES('%s','%s','%s','%s','%s');",
+
+
+
+                order1.getProductID(),
+                order1.getProductNAME(),
+                order1.getQuantity(),
+                order1.getPrice(),
+                order1.getDiscount());
+        db.execSQL(query);
+
+    }
 
 
 
@@ -186,6 +200,8 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+
 
     }
 

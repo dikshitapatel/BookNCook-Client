@@ -57,14 +57,13 @@ public class Cart extends AppCompatActivity {
     }
 
     private void loadListFood() {
-   cart= new Database(this).getCarts();
+   cart = new Database(this).getCarts();
         adapter = new CartAdapter(cart,this);
         recyclerView.setAdapter(adapter);
-
         int total = 0;
-        for(Order order1:cart)
-            total+=(Integer.parseInt(order1.getPrice()))*(Integer.parseInt(order1.getQuantity()));
-        Locale locale = new Locale("en","INDIA");
+        for(Order order:cart)
+            total+=(Integer.parseInt(order.getPrice()))*(Integer.parseInt(order.getQuantity()));
+        Locale locale = new Locale("en","US");
         NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
 
         txtTotalPrice.setText(fmt.format(total));

@@ -31,7 +31,7 @@ public class FoodDetail extends AppCompatActivity {
     FloatingActionButton btnCart;
     ElegantNumberButton numberButton;
     SQLiteDatabase db;
-    Order o;
+
     Database d=new Database(FoodDetail.this);
 
 
@@ -65,9 +65,16 @@ public class FoodDetail extends AppCompatActivity {
 
 
                  db=openOrCreateDatabase("EatIt.db", Context.MODE_PRIVATE,null);
+                 new Database(getBaseContext()).addToCart(new Order(
+                         foodId,
+                         currentFood.getName(),
+                         numberButton.getNumber(),
+                         currentFood.getPrice(),
+                         currentFood.getDiscount()
 
+                         ));
 
-                 Toast.makeText(FoodDetail.this, "Added to cart ", Toast.LENGTH_SHORT).show();
+                         Toast.makeText(FoodDetail.this, "Added to cart ", Toast.LENGTH_SHORT).show();
 
 
                  d.getAData();
