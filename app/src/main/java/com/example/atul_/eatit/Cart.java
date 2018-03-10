@@ -1,16 +1,24 @@
 package com.example.atul_.eatit;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.atul_.eatit.Common.Common;
 import com.example.atul_.eatit.Database.Database;
 import com.example.atul_.eatit.ViewHolder.CartAdapter;
 import com.example.atul_.eatit.model.Order;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.example.atul_.eatit.model.Request;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -25,7 +33,7 @@ public class Cart extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     
     FirebaseDatabase database;
-    DatabaseReference request;
+    DatabaseReference requests;
     TextView txtTotalPrice;
     FButton btnPlace;
 
@@ -41,7 +49,7 @@ public class Cart extends AppCompatActivity {
         setContentView(R.layout.activity_cart);
         
         database=FirebaseDatabase.getInstance();
-        request=database.getReference("Requests");
+        requests=database.getReference("Requests");
         
         recyclerView=(RecyclerView)findViewById(R.id.listCart);
         recyclerView.setHasFixedSize(true);
@@ -52,9 +60,63 @@ public class Cart extends AppCompatActivity {
         btnPlace = (FButton)findViewById(R.id.btnPlaceOrder);
         
         loadListFood();
+        btnPlace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAlertDialog();
+            }
+
+            private void showAlertDialog() {
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(Cart.this);
+                alertDialog.setTitle("One more step");
+                alertDialog.setMessage("Enter your address:");
+                final EditText edtAddresss = new EditText(Cart.this);
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT
+
+                );
+                edtAddresss.setLayoutParams(lp);
+                alertDialog.setView(edtAddresss);
+                alertDialog.setIcon(R.drawable.ic_shopping_cart_black_24dp);
+                AlertDialog.Builder yes = alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        Request request = new Request(
+                                Common.currentUser.getPhone(),
+                                Common.currentUser.getName(),
+                                edtAddresss.getText().toString(),
+                                txtTotalPrice.getText().toString(),
+                                cart
+                        );
+
+                        requests.child(String.valueOf(System.currentTimeMillis()))
+                                .setValue(request);
+
+                        new Database(getBaseContext()).cleanCart();
+                        Toast.makeText(Cart.this, "Thank you ,Order placed ", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                });
+                alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+
+                    }
+
+                });
+                alertDialog.show();
+            }
+
+
+
+        });
 
         
     }
+
 
     private void loadListFood() {
    cart = new Database(this).getCarts();

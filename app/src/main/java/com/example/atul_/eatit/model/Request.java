@@ -1,12 +1,15 @@
 package com.example.atul_.eatit.model;
 
+
+import com.example.atul_.eatit.model.Order;
+
 import java.util.List;
 
 /**
- * Created by Admin on 06-Mar-18.
+ * Created by Admin on 24-Feb-18.
  */
 
-public class Request {
+public class  Request {
 
     private String phone;
     private String name;
@@ -14,22 +17,23 @@ public class Request {
     private String total;
     private String status;
     private List<Order> foods;
+
 // list of food Order
 
     public Request(){
 
     }
 
-
-
-    public Request(String phone, String name, String address, String total, List<Order> foods) {
+    public Request(String phone, String name, String address,String total, List<Order> foods) {
         this.phone = phone;
         this.name = name;
         this.address = address;
         this.total = total;
+        this.status ="0";
         this.foods = foods;
-        this.status="0";
+
     }
+
     public String getStatus() {
         return status;
     }
@@ -62,6 +66,8 @@ public class Request {
         this.address = address;
     }
 
+
+
     public String getTotal() {
         return total;
     }
@@ -76,5 +82,6 @@ public class Request {
 
     public void setFoods(List<Order> foods) {
         this.foods = foods;
-    }
-}
+    } }
+
+
