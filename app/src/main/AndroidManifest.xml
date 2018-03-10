@@ -30,6 +30,11 @@
         <activity android:name=".OrderStatus"/>
         <activity android:name=".Cart">
         </activity>
+        <service
+            android:name=".Service.ListenOrder"
+            android:enabled="true"
+            android:exported="true"></service>
+
     </application>
 
 </manifest>

@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.example.atul_.eatit.Common.*;
 import com.example.atul_.eatit.Interface.ItemClickListener;
+import com.example.atul_.eatit.Service.ListenOrder;
 import com.example.atul_.eatit.ViewHolder.MenuViewHolder;
 import com.example.atul_.eatit.model.Category;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -113,6 +114,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             Toast.makeText(this, "Please check your connection", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        Intent i=new Intent(Home.this,ListenOrder.class);
+        startService(i);
 
 
     }

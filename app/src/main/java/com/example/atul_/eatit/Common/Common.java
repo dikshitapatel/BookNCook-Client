@@ -39,4 +39,15 @@ public class Common {
 
     }
 
+    public static String codeConversion(String status) {
+        if("0".equals(status))
+            return "Placed";
+        else if("1".equals(status))
+            return "On The Way";
+        else
+            return "Shipped";
+
+    }
+
+
 }

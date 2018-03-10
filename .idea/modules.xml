@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AllDone.iml" filepath="$PROJECT_DIR$/AllDone.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/bookncook_30jan.iml" filepath="$PROJECT_DIR$/bookncook_30jan.iml" />
       <module fileurl="file://$PROJECT_DIR$/bookncook_30janfinal.iml" filepath="$PROJECT_DIR$/bookncook_30janfinal.iml" />
       <module fileurl="file://$PROJECT_DIR$/bookncook_menu17.iml" filepath="$PROJECT_DIR$/bookncook_menu17.iml" />
@@ -15,6 +16,7 @@
       <module fileurl="file://$PROJECT_DIR$/final_done.iml" filepath="$PROJECT_DIR$/final_done.iml" />
       <module fileurl="file://$PROJECT_DIR$/gu.iml" filepath="$PROJECT_DIR$/gu.iml" />
       <module fileurl="file://$PROJECT_DIR$/insertpending.iml" filepath="$PROJECT_DIR$/insertpending.iml" />
+      <module fileurl="file://$PROJECT_DIR$/integr_left.iml" filepath="$PROJECT_DIR$/integr_left.iml" />
       <module fileurl="file://$PROJECT_DIR$/integration_done.iml" filepath="$PROJECT_DIR$/integration_done.iml" />
     </modules>
   </component>

@@ -211,7 +211,7 @@ public class SignIn extends AppCompatActivity {
 
                         String sc=edtSecureCode.getText().toString();
 
-                        if (user!=null && user.getSecureCode().equals(sc)) {
+                        if (sc.equals(user.getSecureCode())) {
                             Toast.makeText(SignIn.this, "Your password:" + user.getPassword(), Toast.LENGTH_LONG).show();
                         } else {
                             Toast.makeText(SignIn.this, "Wrong secure code", Toast.LENGTH_SHORT).show();
