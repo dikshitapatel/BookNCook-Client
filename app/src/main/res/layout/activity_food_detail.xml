@@ -60,6 +60,8 @@
         app:layout_anchorGravity="bottom|right|end"
         app:useCompatPadding="true"/>
 
+
+
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_height="match_parent"
@@ -86,9 +88,9 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/food_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/food_name"
                         android:layout_marginTop="8dp"
                         android:padding="12dp"
                         android:text="Food Name"
@@ -97,7 +99,7 @@
                         android:textStyle="bold"/>
 
 
-                <LinearLayout
+                    <LinearLayout
                     android:id="@+id/layout_price"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
@@ -147,22 +149,51 @@
                 app:cardElevation="5dp"
                 app:cardUseCompatPadding="true">
 
-                <TextView
-                    android:id="@+id/food_description"
-                    android:layout_marginTop="12dp"
-                    android:lineSpacingMultiplier="1.5"
-                    android:padding="12dp"
-                    android:text="Description"
-                    android:textColor="@android:color/black"
-                    android:textSize="14sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+              <LinearLayout
+                  android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent">
+                  
+                  <RatingBar
+                      android:id="@+id/ratingBar"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:max="5"
+                      android:rating="0"
+                      android:isIndicator="true"
+                  />
+
+                  <TextView
+                      android:id="@+id/food_description"
+                      android:layout_marginTop="12dp"
+                      android:lineSpacingMultiplier="1.5"
+                      android:padding="12dp"
+                      android:text="Description"
+                      android:textColor="@android:color/black"
+                      android:textSize="14sp"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content" />
+
+              </LinearLayout>
             </android.support.v7.widget.CardView>
 
 
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btn_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|right"
+        android:src="@drawable/ic_star_black_24dp"
+        app:backgroundTint="@android:color/white"
+        app:elevation="6dp"
+        app:layout_anchor="@+id/nestedScrollView"
+        app:layout_anchorGravity="top|left"
+        app:pressedTranslationZ="12dp"
+        app:useCompatPadding="true"/>
 
 
 </android.support.design.widget.CoordinatorLayout>

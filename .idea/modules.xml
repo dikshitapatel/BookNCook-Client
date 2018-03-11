@@ -17,6 +17,7 @@
       <module fileurl="file://$PROJECT_DIR$/insertpending.iml" filepath="$PROJECT_DIR$/insertpending.iml" />
       <module fileurl="file://$PROJECT_DIR$/integr_left.iml" filepath="$PROJECT_DIR$/integr_left.iml" />
       <module fileurl="file://$PROJECT_DIR$/integration_done.iml" filepath="$PROJECT_DIR$/integration_done.iml" />
+      <module fileurl="file://$PROJECT_DIR$/payment.iml" filepath="$PROJECT_DIR$/payment.iml" />
       <module fileurl="file://$PROJECT_DIR$/payment_.iml" filepath="$PROJECT_DIR$/payment_.iml" />
     </modules>
   </component>
