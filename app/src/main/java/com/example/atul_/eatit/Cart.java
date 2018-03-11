@@ -119,7 +119,7 @@ public class Cart extends AppCompatActivity {
 
 
     private void loadListFood() {
-   cart = new Database(this).getCarts();
+        cart = new Database(this).getCarts();
         adapter = new CartAdapter(cart,this);
         recyclerView.setAdapter(adapter);
         int total = 0;
@@ -129,6 +129,7 @@ public class Cart extends AppCompatActivity {
         NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
 
         txtTotalPrice.setText(fmt.format(total));
+
 
     }
 

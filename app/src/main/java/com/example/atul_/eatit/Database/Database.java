@@ -9,7 +9,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
+import android.widget.Toast;
 
+import com.example.atul_.eatit.SignIn;
 import com.example.atul_.eatit.model.Order;
 import com.google.firebase.database.ValueEventListener;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
@@ -96,7 +98,8 @@ public class Database extends SQLiteOpenHelper {
         Cursor c = qb.query(db,sqlSelect,null,null,null,null,null);
 
         final List<Order>result = new ArrayList<>();
-        if(c.moveToFirst())
+            if(c.moveToFirst())
+
         {
             do{
                 result.add(new Order(c.getString(c.getColumnIndex("ProductId")),

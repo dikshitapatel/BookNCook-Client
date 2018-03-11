@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:fitsSystemWindows="true"
-    android:background="@drawable/bg">
+    android:padding="20dp"
+    >
 
     <LinearLayout
         android:orientation="vertical"
@@ -13,11 +13,16 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="72dp"
-            android:layout_marginBottom="24dp"
-            android:layout_gravity="center_horizontal" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="SIGN UP"
+            android:textColor="@android:color/black"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
 
 
         <android.support.design.widget.TextInputLayout
@@ -27,6 +32,7 @@
             android:layout_marginBottom="8dp">
             <EditText
                 android:id="@+id/edtphone"
+                android:drawableLeft="@drawable/id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -41,6 +47,7 @@
             android:layout_marginBottom="8dp">
             <EditText
                 android:id="@+id/edtname"
+                android:drawableLeft="@drawable/person"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -55,6 +62,7 @@
             android:layout_marginBottom="8dp">
             <EditText
                 android:id="@+id/edtpassword"
+                android:drawableLeft="@drawable/lock"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
@@ -68,6 +76,7 @@
             android:layout_marginBottom="8dp">
             <EditText
                 android:id="@+id/edtSecureCode"
+                android:drawableLeft="@drawable/secure"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
@@ -79,12 +88,16 @@
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btnSignUp"
             android:layout_width="fill_parent"
+            android:textColor="#009688"
+            android:background="@android:color/black"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:layout_marginTop="24dp"
             android:padding="12dp"
-            android:text="Login" />
+            android:text="SIGN UP" />
 
 
     </LinearLayout>
-</ScrollView>
+
+
+</RelativeLayout>

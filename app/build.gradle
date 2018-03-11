@@ -29,7 +29,6 @@ dependencies {
 
     compile 'io.paperdb:paperdb:2.1'
     compile 'com.github.d-max:spots-dialog:0.7@aar'
-
     compile 'com.github.rey5137:material:1.2.4'
     compile 'com.android.support:design:25.2.0'
     compile 'com.github.mancj:MaterialSearchBar:0.7.1'
