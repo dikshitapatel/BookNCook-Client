@@ -122,8 +122,8 @@ public class Database extends SQLiteOpenHelper {
 
                 order1.getProductID(),
                 order1.getProductNAME(),
-                order1.getQuantity(),
                 order1.getPrice(),
+                order1.getQuantity(),
                 order1.getDiscount());
         db.execSQL(query);
 
