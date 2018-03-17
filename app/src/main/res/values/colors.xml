@@ -3,8 +3,11 @@
     <color name="colorPrimary">#000080</color>
     <color name="colorPrimaryDark">#00251a</color>
     <color name="colorAccent">#39796b</color>
-    <color name="colorGreen">#009688</color>
+    <color name="green">#4FC3F7</color>
     <color name="button">#fdf8f8</color>
+    <color name="colorGreen">#fd9ef568</color>
+
+
     <color name="total">#000000</color>
     <color name="bg">#9fe1b1</color>
 </resources>
