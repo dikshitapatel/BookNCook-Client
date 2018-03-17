@@ -35,6 +35,7 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:title="Food Name"
+                android:titleTextColor="@color/total"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_width="match_parent"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
@@ -94,7 +95,7 @@
                         android:layout_marginTop="8dp"
                         android:padding="12dp"
                         android:text="Food Name"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAccent"
                         android:textSize="20sp"
                         android:textStyle="bold"/>
 
@@ -105,20 +106,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <ImageView
+                    <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:src="@drawable/ic_attach_money_black_24dp" />
+                        android:text="Rs"
+                        android:textColor="@android:color/black"
+                        android:textSize="22sp"
+                        android:textStyle="bold"/>
 
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/food_price"
-                        android:text="1,000"
+                        android:text="1000"
                         android:layout_weight="9"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAccent"
                         android:textSize="18sp"
                         android:textStyle="bold"/>
 
@@ -153,15 +157,6 @@
                   android:orientation="vertical"
                   android:layout_width="match_parent"
                   android:layout_height="match_parent">
-                  
-                  <RatingBar
-                      android:id="@+id/ratingBar"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:max="5"
-                      android:rating="0"
-                      android:isIndicator="true"
-                  />
 
                   <TextView
                       android:id="@+id/food_description"

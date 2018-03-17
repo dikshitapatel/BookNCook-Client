@@ -70,7 +70,7 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
 
         btnCart = (FloatingActionButton)findViewById(R.id.btnCart);
         btnRating = (FloatingActionButton)findViewById(R.id.btn_rating);
-        ratingBar = (RatingBar)findViewById(R.id.ratingBar);
+       // ratingBar = (RatingBar)findViewById(R.id.ratingBar);
 
         btnRating.setOnClickListener(new View.OnClickListener() {
             @Override

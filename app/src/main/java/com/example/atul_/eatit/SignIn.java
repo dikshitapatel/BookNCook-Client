@@ -48,14 +48,14 @@ public class SignIn extends AppCompatActivity {
 
 
         if (phone.isEmpty()) {
-            edtPhone.setError("enter a valid User Id");
+            edtPhone.setError(" Invalid Id");
             valid = false;
         } else {
             edtPhone.setError(null);
         }
 
         if(password.isEmpty()) {
-            edtPassword.setError("between 4 and 10 alphanumeric characters");
+            edtPassword.setError("Invalid Password");
             valid = false;
         } else {
             edtPassword.setError(null);

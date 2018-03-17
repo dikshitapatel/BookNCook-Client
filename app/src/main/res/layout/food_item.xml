@@ -53,7 +53,7 @@
         <TextView
             android:layout_margin="10dp"
             android:id="@+id/food_price"
-            android:text="$100"
+            android:text="Rs 85"
             android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

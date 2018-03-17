@@ -19,6 +19,7 @@
       <module fileurl="file://$PROJECT_DIR$/integration_done.iml" filepath="$PROJECT_DIR$/integration_done.iml" />
       <module fileurl="file://$PROJECT_DIR$/payment.iml" filepath="$PROJECT_DIR$/payment.iml" />
       <module fileurl="file://$PROJECT_DIR$/payment_.iml" filepath="$PROJECT_DIR$/payment_.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rating_donr.iml" filepath="$PROJECT_DIR$/rating_donr.iml" />
     </modules>
   </component>
 </project>

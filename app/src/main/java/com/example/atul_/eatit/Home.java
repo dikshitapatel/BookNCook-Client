@@ -2,6 +2,7 @@ package com.example.atul_.eatit;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -62,7 +63,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         requestForPermission(Home.this,0);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Menu");
-        setSupportActionBar(toolbar);
+        toolbar.setBackgroundColor(Color.parseColor("#39796b"));setSupportActionBar(toolbar);
 
         database = FirebaseDatabase.getInstance();
         category = database.getReference("Category");
