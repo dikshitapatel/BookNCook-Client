@@ -182,7 +182,14 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                      Intent orderIntent=new Intent(Home.this,OrderStatus.class);
                      startActivity(orderIntent);
 
-                } else if (id == R.id.nav_logout) {
+
+                }
+                 else if (id == R.id.nav_fav) {
+                     Intent i=new Intent(Home.this,FavoritesActivity.class);
+                     startActivity(i);
+
+                 }
+                else if (id == R.id.nav_logout) {
 
                      Paper.book().destroy();
 

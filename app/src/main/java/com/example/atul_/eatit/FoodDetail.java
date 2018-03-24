@@ -2,6 +2,7 @@ package com.example.atul_.eatit;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -61,7 +62,6 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_detail);
-
 
         database = FirebaseDatabase.getInstance();
         foods = database.getReference("Food");

@@ -33,6 +33,8 @@
         <activity android:name=".OrderStatus"/>
         <activity android:name=".Cart">
         </activity>
+        <activity android:name=".FavoritesActivity">
+        </activity>
         <service
             android:name=".Service.ListenOrder"
             android:enabled="true"

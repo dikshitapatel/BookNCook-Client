@@ -9,12 +9,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
-import android.widget.Toast;
+import android.util.Log;
 
-import com.example.atul_.eatit.SignIn;
+import com.example.atul_.eatit.model.Favorites;
 import com.example.atul_.eatit.model.Order;
 import com.google.firebase.database.ValueEventListener;
-import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 
 import java.util.ArrayList;
@@ -62,7 +61,9 @@ public class Database extends SQLiteOpenHelper {
                 "Quantity INTEGER," +
                 "Discount INTEGER);");
 
-        db.execSQL("CREATE TABLE IF NOT EXISTS Favorites(FoodId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE);");
+        db.execSQL("CREATE TABLE IF NOT EXISTS Favorites(FoodId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,"+
+                "FoodName TEXT,"+
+                "FoodPrice TEXT);");
 
 
 
@@ -98,8 +99,7 @@ public class Database extends SQLiteOpenHelper {
         Cursor c = qb.query(db,sqlSelect,null,null,null,null,null);
 
         final List<Order>result = new ArrayList<>();
-            if(c.moveToFirst())
-
+        if(c.moveToFirst())
         {
             do{
                 result.add(new Order(c.getString(c.getColumnIndex("ProductId")),
@@ -122,8 +122,8 @@ public class Database extends SQLiteOpenHelper {
 
                 order1.getProductID(),
                 order1.getProductNAME(),
-                order1.getPrice(),
                 order1.getQuantity(),
+                order1.getPrice(),
                 order1.getDiscount());
         db.execSQL(query);
 
@@ -160,10 +160,14 @@ public class Database extends SQLiteOpenHelper {
 
     }
 
-    public void addToFavorites(String foodId)
+    public void addToFavorites(Favorites food)
     {
         SQLiteDatabase db=getReadableDatabase();
-        String query=String.format("INSERT INTO Favorites(FoodId) VALUES(%s);",foodId);
+        String query = String.format("INSERT INTO Favorites(FoodId,FoodName,FoodPrice) VALUES('%s','%s','%s');",
+                food.getFoodId(),
+                food.getFoodName(),
+                food.getFoodPrice());
+
         db.execSQL(query);
     }
 
@@ -173,6 +177,8 @@ public class Database extends SQLiteOpenHelper {
         String query=String.format("DELETE FROM Favorites WHERE FoodId='%s';",foodId);
         db.execSQL(query);
     }
+
+
 
     public void getAData(){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -187,7 +193,7 @@ public class Database extends SQLiteOpenHelper {
 
     }
 
-   public boolean isFavorites(String foodId)
+    public boolean isFavorites(String foodId)
     {
         SQLiteDatabase db=getReadableDatabase();
         String query=String.format("SELECT * FROM Favorites WHERE FoodId='%s';",foodId);
@@ -201,11 +207,70 @@ public class Database extends SQLiteOpenHelper {
         return true;
     }
 
+    public List<Favorites> getFav()
+    {
+
+
+        try{
+            db=SQLiteDatabase.openDatabase("EatIt.db",null,Context.MODE_PRIVATE);
+            // String path ="D:\EatIt.db" + DATABASE_NAME;
+            //  SQLiteDatabase checkDB = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY);
+            //System.out.println(checkDB);
+        } catch(SQLiteException e){
+            System.out.println("Exception");
+        }
+
+
+        //SQLiteDatabase db = getReadableDatabase();
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+
+        String[] sqlSelect={"FoodId","FoodName","FoodPrice"};
+        String sqlTable="Favorites";
+
+
+
+        qb.setTables(sqlTable);
+
+
+        Cursor c = qb.query(db,sqlSelect,null,null,null,null,null);
+
+        final List<Favorites>result = new ArrayList<>();
+        if(c.moveToFirst())
+        {
+            do{
+                result.add(new Favorites(c.getString(c.getColumnIndex("FoodId")),
+                        c.getString(c.getColumnIndex("FoodName")),
+                        c.getString(c.getColumnIndex("FoodPrice"))));
+                Log.e("result",result.toString());
+
+            }while(c.moveToNext());
+        }
+        return result;
+    }
+
+
+    public void takeFav(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query=String.format("SELECT * FROM Favorites");
+        Cursor cursor=db.rawQuery(query,null);
+        if (cursor.getCount()<=0)
+        {
+            cursor.close();
+
+        }
+        cursor.close();
+
+    }
+
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+        db.execSQL("DROP TABLE IF EXISTS + OrderDetail");
+        onCreate(db);
 
-
+        db.execSQL("DROP TABLE IF EXISTS + Favorites");
+        onCreate(db);
     }
 
 

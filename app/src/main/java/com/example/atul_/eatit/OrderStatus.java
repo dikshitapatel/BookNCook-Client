@@ -64,7 +64,6 @@ public class OrderStatus extends AppCompatActivity {
     }
 
     private String convertCodeToStatus(String status) {
-        status = null;
         if(("0").equals(status))
             return "Placed";
         else if(("1").equals(status))

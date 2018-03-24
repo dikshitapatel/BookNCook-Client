@@ -15,7 +15,9 @@ import android.widget.Toast;
 import com.example.atul_.eatit.Common.Common;
 import com.example.atul_.eatit.Database.Database;
 import com.example.atul_.eatit.Interface.ItemClickListener;
+import com.example.atul_.eatit.ViewHolder.FavoritesAdapter;
 import com.example.atul_.eatit.ViewHolder.FoodViewHolder;
+import com.example.atul_.eatit.model.Favorites;
 import com.example.atul_.eatit.model.Food;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -40,6 +42,7 @@ public class FoodList extends AppCompatActivity {
     String categoryId="";
     FirebaseRecyclerAdapter<Food,FoodViewHolder> adapter;
     Database localDB;
+
 
     FirebaseRecyclerAdapter<Food,FoodViewHolder> searchadapter;
     List<String> suggestList=new ArrayList<>();
@@ -183,15 +186,23 @@ public class FoodList extends AppCompatActivity {
                 viewHolder.fav_image.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        Favorites favorites=new Favorites();
+                        //  localDB.addToFavorites(adapter.getRef(position).getKey());
+                        favorites.setFoodId(adapter.getRef(position).getKey());
+                        favorites.setFoodName(model.getName());
+                        favorites.setFoodPrice(model.getPrice());
                         if (!localDB.isFavorites(adapter.getRef(position).getKey()))
                         {
-                            localDB.addToFavorites(adapter.getRef(position).getKey());
+
+                            localDB.addToFavorites(favorites);
                             viewHolder.fav_image.setImageResource(R.drawable.ic_favorite_black_24dp);
                             Toast.makeText(FoodList.this,""+model.getName()+"was added to favorites",Toast.LENGTH_SHORT).show();
+                            localDB.takeFav();
 
                         }
                         else
                         {
+
                             localDB.removeFromFavorites(adapter.getRef(position).getKey());
                             viewHolder.fav_image.setImageResource(R.drawable.ic_favorite_border_black_24dp);
                             Toast.makeText(FoodList.this,""+model.getName()+"was removed from favorites",Toast.LENGTH_SHORT).show();

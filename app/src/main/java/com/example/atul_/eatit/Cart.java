@@ -37,7 +37,6 @@ public class Cart extends AppCompatActivity {
     TextView txtTotalPrice;
     FButton btnPlace;
 
-
     List<Order> cart = new ArrayList<>();
 
     CartAdapter adapter;
@@ -125,7 +124,7 @@ public class Cart extends AppCompatActivity {
         int total = 0;
         for(Order order:cart)
             total+=(Integer.parseInt(order.getPrice()))*(Integer.parseInt(order.getQuantity()));
-        Locale locale = new Locale("en","US");
+        Locale locale = new Locale("hi","IN");
         NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
 
         txtTotalPrice.setText(fmt.format(total));
