@@ -32,7 +32,6 @@ public class SignIn extends AppCompatActivity {
     Button btnSignIn;
     TextView btnSignUp;
     CheckBox ckbRemember;
-    TextView txtForgotPwd;
     ProgressDialog progressDialog;
     DatabaseReference table_user;
     FirebaseDatabase database;
@@ -78,7 +77,6 @@ public class SignIn extends AppCompatActivity {
 
         btnSignIn = (Button) findViewById(R.id.btnSignIn);
         ckbRemember = (CheckBox) findViewById(R.id.ckbRemember);
-        txtForgotPwd = (TextView) findViewById(R.id.txtForgotPwd);
         btnSignUp = (TextView) findViewById(R.id.btnSignUp);
 
         Paper.init(this);
@@ -90,14 +88,7 @@ public class SignIn extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         table_user = database.getReference("User");
 
-        txtForgotPwd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showForgotpwdDialog();
-            }
 
-
-        });
 
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
@@ -197,67 +188,6 @@ public class SignIn extends AppCompatActivity {
 
 
 
-    private void showForgotpwdDialog() {
-
-        AlertDialog.Builder builder=new AlertDialog.Builder(this);
-        builder.setTitle("Forgot Password");
-        builder.setMessage("Enter your secure code");
-
-        LayoutInflater inflater=this.getLayoutInflater();
-        View forgot_view=inflater.inflate(R.layout.forgot_password_layout,null);
-        builder.setView(forgot_view);
-        builder.setIcon(R.drawable.ic_security_black_24dp);
-
-        final MaterialEditText edtPhone=(MaterialEditText)forgot_view.findViewById(R.id.edtphone);
-        final MaterialEditText edtSecureCode=(MaterialEditText)forgot_view.findViewById(R.id.edtSecureCode);
-
-        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-                table_user.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        User user = dataSnapshot.child(edtPhone.getText().toString()).getValue(User.class);
-
-                        String sc=edtSecureCode.getText().toString();
-
-                        if (user!=null && user.getSecureCode().equals(sc)) {
-                            Toast.makeText(SignIn.this, "Your password:" + user.getPassword(), Toast.LENGTH_LONG).show();
-                        } else {
-                            Toast.makeText(SignIn.this, "Wrong secure code", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-
-
-            }
-        });
-
-        builder.setNegativeButton("No",new DialogInterface.OnClickListener(){
-
-            @Override
-
-            public  void onClick(DialogInterface dialogInterface,int i)
-            {
-
-            }
-
-
-        });
-
-
-        builder.show();
-
-
-
-
-    }
 }
 
 

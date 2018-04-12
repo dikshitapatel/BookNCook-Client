@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AllDone.iml" filepath="$PROJECT_DIR$/AllDone.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FINAL.iml" filepath="$PROJECT_DIR$/FINAL.iml" />
       <module fileurl="file://$PROJECT_DIR$/UI.iml" filepath="$PROJECT_DIR$/UI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/bookncook_30jan.iml" filepath="$PROJECT_DIR$/bookncook_30jan.iml" />
