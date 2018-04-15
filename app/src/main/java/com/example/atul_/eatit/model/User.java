@@ -19,12 +19,11 @@ public class User {
 
     }
 
-    public User(String name, String password,String secureCode) {
+    public User(String name, String password) {
 
         Name = name;
         Password = password;
         IsStaff="false";
-        this.secureCode=secureCode;
 
     }
     public String getSecureCode() {

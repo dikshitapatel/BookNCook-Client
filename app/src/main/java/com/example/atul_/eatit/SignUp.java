@@ -19,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class SignUp extends AppCompatActivity {
-    EditText edtName,edtPhone,edtPassword,edtSecureCode;
+    EditText edtName,edtPhone,edtPassword,edtRepeat;
     Button btnSignUp;
     ProgressDialog progressDialog;
 
@@ -36,6 +36,11 @@ public class SignUp extends AppCompatActivity {
         } else {
             edtPhone.setError(null);
         }
+        if(!edtPassword.equals(edtRepeat))
+        {
+            valid=false;
+        }
+
 
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
             edtPassword.setError("between 4 and 10 alphanumeric characters");
@@ -55,7 +60,7 @@ public class SignUp extends AppCompatActivity {
         edtName= (EditText) findViewById(R.id.edtname);
         edtPhone= (EditText) findViewById(R.id.edtphone);
         edtPassword= (EditText) findViewById(R.id.edtpassword);
-        edtSecureCode=(EditText) (findViewById(R.id.edtSecureCode));
+        edtRepeat=(EditText) (findViewById(R.id.edtRepeatPassword));
 
         btnSignUp=(Button)(findViewById(R.id.btnSignUp));
 
@@ -96,8 +101,7 @@ public class SignUp extends AppCompatActivity {
 
                                 } else {
                                     mDialog.dismiss();
-                                    User user = new User(edtName.getText().toString(), edtPassword.getText().toString(),
-                                            edtSecureCode.getText().toString());
+                                    User user = new User(edtName.getText().toString(), edtPassword.getText().toString());
                                     table_user.child(edtPhone.getText().toString()).setValue(user);
                                     Toast.makeText(SignUp.this, "Sign up successfull", Toast.LENGTH_SHORT).show();
                                     Intent i = new Intent(SignUp.this, Home.class);
